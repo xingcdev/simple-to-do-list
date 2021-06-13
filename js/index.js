@@ -21,10 +21,8 @@ form.addEventListener('submit', (event) => {
 		addTodo(text);
 		input.value = '';
 	}
-	console.log(todos);
 });
 
-// TODO
 const renderTodoOnDOM = function (todo) {
 	// Add a todo as li item on the DOM
 	const list = document.querySelector('.todo-list');
@@ -36,7 +34,7 @@ const renderTodoOnDOM = function (todo) {
 
 	node.innerHTML = `
 	<div class="right">
-		<input type="checkbox" id=${todo.id}> 
+		<input type="checkbox" id=${todo.id} class="js-checkbox"> 
 		<label for=${todo.id}></label> 
 		<span class="text">${todo.text}</span> 
 	</div>
@@ -45,3 +43,33 @@ const renderTodoOnDOM = function (todo) {
 	// Append node to the DOM
 	list.append(node);
 };
+
+// Instead of listening for clicks on individual checkbox elements,
+// we are listening for clicks on the entire list container.
+document.querySelector('.todo-list').addEventListener('click', (event) => {
+	const clickedElement = event.target;
+
+	if (clickedElement.classList.contains('js-checkbox')) {
+		// dataset.id == "data-id" attribute on the li element
+		// 2x parentElement because we've got a div between li and clickedElement
+		const itemId = clickedElement.parentElement.parentElement.dataset.id;
+		toggleDone(itemId);
+	}
+	console.log(todos);
+});
+
+const toggleDone = function (id) {
+	const findTheTodoById = function (id) {
+		return todos.findIndex(function (todo) {
+			return todo.id === Number(id);
+		});
+	};
+
+	const index = findTheTodoById(id);
+	const thisTodo = todos[index];
+	thisTodo.isDone = !thisTodo.isDone;
+
+	renderTodoOnDOM(thisTodo);
+};
+
+// TODO change renderTodoOnDOM function
