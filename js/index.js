@@ -5,7 +5,7 @@ const addTodo = function (text) {
 	const todo = {
 		id: Date.now(),
 		text: text,
-		isDone: false,
+		isCompleted: false,
 	};
 	todos.push(todo);
 	renderTodoOnDOM(todo);
@@ -23,25 +23,54 @@ form.addEventListener('submit', (event) => {
 	}
 });
 
+// Add or update a todo item
 const renderTodoOnDOM = function (todo) {
 	// Add a todo as li item on the DOM
 	const list = document.querySelector('.todo-list');
+	const newItem = document.createElement('li');
+	const isCompleted = todo.isCompleted ? 'isCompleted' : '';
+	newItem.setAttribute('class', `todo-item ${isCompleted}`);
+	newItem.setAttribute('data-id', todo.id);
 
-	const node = document.createElement('li');
-	const isDone = todo.isDone ? 'isDone' : '';
-	node.setAttribute('class', `todo-item ${isDone}`);
-	node.setAttribute('data-id', todo.id);
+	// We need to update the checkbox to be checked or not, otherwise when replacing the existing item with the new one, the checkbox on the DOM will always be empty
+	let checkboxInput;
+	if (isCompleted) {
+		checkboxInput = `<input type="checkbox" id=${todo.id} class="js-checkbox-input checkbox-input" checked>`;
+	} else {
+		checkboxInput = `<input type="checkbox" id=${todo.id} class="js-checkbox-input checkbox-input">`;
+	}
 
-	node.innerHTML = `
-	<div class="right">
-		<input type="checkbox" id=${todo.id} class="js-checkbox"> 
-		<label for=${todo.id}></label> 
-		<span class="text">${todo.text}</span> 
-	</div>
+	newItem.innerHTML = `
+	<label class="checkbox">
+		<span class="checkbox__input">
+			${checkboxInput}
+			<span class="checkbox__control">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					aria-hidden="true"
+					focusable="false"
+				>
+					<path
+						fill="none"
+						stroke="white"
+						stroke-width="3"
+						d="M1.73 12.91l6.37 6.37L22.79 4.59"
+					/>
+				</svg>
+			</span>
+		</span> 
+		<span class="label">${todo.text}</span>
+	</label>
+
 	<a class="delete-todo js-delete-todo">x</a>`;
 
-	// Append node to the DOM
-	list.append(node);
+	const existingItem = document.querySelector(`[data-id='${todo.id}']`);
+	if (existingItem) {
+		existingItem.replaceWith(newItem);
+	} else {
+		list.append(newItem);
+	}
 };
 
 // Instead of listening for clicks on individual checkbox elements,
@@ -49,10 +78,11 @@ const renderTodoOnDOM = function (todo) {
 document.querySelector('.todo-list').addEventListener('click', (event) => {
 	const clickedElement = event.target;
 
-	if (clickedElement.classList.contains('js-checkbox')) {
+	if (clickedElement.classList.contains('js-checkbox-input')) {
 		// dataset.id == "data-id" attribute on the li element
 		// 2x parentElement because we've got a div between li and clickedElement
-		const itemId = clickedElement.parentElement.parentElement.dataset.id;
+		const liElement = clickedElement.parentElement.parentElement.parentElement;
+		const itemId = liElement.dataset.id;
 		toggleDone(itemId);
 	}
 	console.log(todos);
@@ -67,9 +97,9 @@ const toggleDone = function (id) {
 
 	const index = findTheTodoById(id);
 	const thisTodo = todos[index];
-	thisTodo.isDone = !thisTodo.isDone;
+	thisTodo.isCompleted = !thisTodo.isCompleted;
 
 	renderTodoOnDOM(thisTodo);
 };
 
-// TODO change renderTodoOnDOM function
+// TODO transition doesn't work

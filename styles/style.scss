@@ -12,23 +12,78 @@ html {
 
 body {
 	font-size: 23px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	font-family: sans-serif;
+}
+
+.todo-list {
+	width: 100%;
 }
 
 li {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 1rem;
-}
+	padding: 0.2rem 0.5rem;
+	// Remove the animation of adding a 1px
+	border: 1px solid transparent;
+	font-size: 2rem;
+	position: relative;
 
-.text {
-	// margin-left: 0.5rem;
-}
+	label.checkbox {
+		display: flex;
+		align-items: center;
+	}
 
-.delete-todo {
-	/* Move to the right */
+	background-color: transparent;
+	transition: background-color 2s ease-in;
+
+	.checkbox__input {
+		// The default checkbox and the custom checkbox are overlapping
+		// This technique is the modern replacement for position: absolute
+		display: inline-grid;
+		grid-template-areas: 'checkbox';
+		> * {
+			grid-area: checkbox;
+		}
+
+		margin-right: 0.5rem;
+
+		/* Hide the browser's default checkbox, keep it accessible by the keyboard */
+		input {
+			opacity: 0;
+			width: 1em;
+			height: 1em;
+		}
+	}
+
+	.checkbox__control {
+		display: inline-block;
+		/* Relative to the font-size applied to the li */
+		width: 1em;
+		height: 1em;
+		border-radius: 5px;
+		border: 1px solid rgb(194, 191, 191);
+	}
+
+	/* === Custom checkbox animation === */
+
+	.checkbox__control svg {
+		transition: transform 2s ease-in 25ms;
+		transform: scale(0);
+		transform-origin: bottom left;
+	}
+	.checkbox__input input:checked + .checkbox__control svg {
+		transform: scale(1);
+	}
+	/* === Custom checkbox animation === */
+
+	&.isCompleted {
+		transition: background-color 2s ease-in;
+		background-color: #e7eded;
+		border: 1px solid #d0d6d6;
+
+		.checkbox__input {
+			background-color: #3673c7cb;
+		}
+	}
 }

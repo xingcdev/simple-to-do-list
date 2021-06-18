@@ -1,0 +1,78 @@
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-size: 23px;
+  font-family: sans-serif;
+}
+
+.todo-list {
+  width: 100%;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid transparent;
+  font-size: 2rem;
+  position: relative;
+  background-color: transparent;
+  transition: background-color 2s ease-in;
+  /* === Custom checkbox animation === */
+  /* === Custom checkbox animation === */
+}
+li label.checkbox {
+  display: flex;
+  align-items: center;
+}
+li .checkbox__input {
+  display: inline-grid;
+  grid-template-areas: "checkbox";
+  margin-right: 0.5rem;
+  /* Hide the browser's default checkbox, keep it accessible by the keyboard */
+}
+li .checkbox__input > * {
+  grid-area: checkbox;
+}
+li .checkbox__input input {
+  opacity: 0;
+  width: 1em;
+  height: 1em;
+}
+li .checkbox__control {
+  display: inline-block;
+  /* Relative to the font-size applied to the li */
+  width: 1em;
+  height: 1em;
+  border-radius: 5px;
+  border: 1px solid #c2bfbf;
+}
+li .checkbox__control svg {
+  transition: transform 2s ease-in 25ms;
+  transform: scale(0);
+  transform-origin: bottom left;
+}
+li .checkbox__input input:checked + .checkbox__control svg {
+  transform: scale(1);
+}
+li.isCompleted {
+  transition: background-color 2s ease-in;
+  background-color: #e7eded;
+  border: 1px solid #d0d6d6;
+}
+li.isCompleted .checkbox__input {
+  background-color: #3673c7cb;
+}
+
+/*# sourceMappingURL=style.css.map */

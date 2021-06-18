@@ -10,6 +10,8 @@
 - [ ] Delete the todo item when the user clicks on the red checkbox
 - [ ] History of todo items ?
 
+https://webdesign.tutsplus.com/tutorials/watch-and-compile-sass-in-five-quick-steps--cms-28275 Watch and Compile Sass in Five Quick Steps
+
 ## References
 
 https://freshman.tech/todo-list/#get-started
