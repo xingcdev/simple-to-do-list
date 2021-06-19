@@ -80,20 +80,30 @@ const renderTodoOnDOM = function (todo) {
 	}
 };
 
-// Instead of listening for clicks on individual checkbox elements,
-// we are listening for clicks on the entire list container.
-document.querySelector('.todo-list').addEventListener('click', (event) => {
-	const clickedElement = event.target;
+const addEventListener = function () {
+	// Instead of listening for clicks on individual checkbox elements,
+	// we are listening for clicks on the entire list container.
+	document.querySelector('.todo-list').addEventListener('click', (event) => {
+		const clickedElement = event.target;
 
-	if (clickedElement.classList.contains('js-checkbox-input')) {
-		// dataset.id == "data-id" attribute on the li element
-		// 2x parentElement because we've got a div between li and clickedElement
-		const liElement = clickedElement.parentElement.parentElement.parentElement;
-		const itemId = liElement.dataset.id;
-		toggleDone(itemId);
-	}
-	console.log(todos);
-});
+		if (clickedElement.classList.contains('js-checkbox-input')) {
+			// dataset.id == "data-id" attribute on the li element
+			// 2x parentElement because we've got a div between li and clickedElement
+			const liElement =
+				clickedElement.parentElement.parentElement.parentElement;
+			const itemId = liElement.dataset.id;
+			toggleDone(itemId);
+		}
+
+		if (clickedElement.classList.contains('js-delete-todo')) {
+			// dataset.id == "data-id" attribute on the li element
+			// 2x parentElement because we've got a div between li and clickedElement
+			const liElement = clickedElement.parentElement;
+			const itemId = liElement.dataset.id;
+			deleteTodo(itemId);
+		}
+	});
+};
 
 /**
  * Make a todo item as done or not
@@ -112,3 +122,33 @@ const toggleDone = function (id) {
 
 	renderTodoOnDOM(thisTodo);
 };
+
+/**
+ * Delete a todo item
+ * @param {number} id The id of the todo item that we want to delete
+ */
+const deleteTodo = function (id) {
+	const findTheTodoById = function (id) {
+		return todos.findIndex(function (todo) {
+			return todo.id === Number(id);
+		});
+	};
+
+	const index = findTheTodoById(id);
+	const currentTodo = todos[index];
+
+	// Create a new object with properties of the current todo item
+	// and a `deleted` property which is set to true
+	const todoToDelete = {
+		...currentTodo,
+		deleted: true,
+	};
+
+	console.log(todoToDelete);
+
+	renderTodoOnDOM(todoToDelete);
+};
+
+addEventListener();
+
+// TODO update the function renderTodoOnDOM
