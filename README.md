@@ -9,6 +9,7 @@
 - [ ] When a todo item is completed, its background becomes grey and the checkbox will be blue
 - [ ] Delete the todo item when the user clicks on the red checkbox
 - [ ] History of todo items ?
+- [ ] Fix transitions ?
 
 https://webdesign.tutsplus.com/tutorials/watch-and-compile-sass-in-five-quick-steps--cms-28275 Watch and Compile Sass in Five Quick Steps
 
