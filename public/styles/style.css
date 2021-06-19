@@ -1,3 +1,7 @@
+:root {
+  --disabled: #959495;
+}
+
 *,
 :after,
 :before {
@@ -27,6 +31,7 @@ li {
   border: 1px solid transparent;
   font-size: 2rem;
   position: relative;
+  color: #333;
   background-color: transparent;
   transition: background-color 2s ease-in;
   /* === Custom checkbox animation === */
@@ -73,6 +78,16 @@ li.isCompleted {
 }
 li.isCompleted .checkbox__input {
   background-color: #3673c7cb;
+}
+li .checkbox__input input:focus + .checkbox__control {
+  box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor;
+  /* Same color as the li */
+}
+li .checkbox__input input:checkbox:disabled + .checkbox__control {
+  color: var(--disabled);
+}
+li.disabled {
+  color: var(--disabled);
 }
 
 /*# sourceMappingURL=style.css.map */
