@@ -1,6 +1,10 @@
 const form = document.querySelector('#form');
 const todos = [];
 
+/**
+ * Add a todo item into the DOM todo list
+ * @param {text} text A text of a todo item
+ */
 const addTodo = function (text) {
 	const todo = {
 		id: Date.now(),
@@ -23,7 +27,10 @@ form.addEventListener('submit', (event) => {
 	}
 });
 
-// Add or update a todo item
+/**
+ * Add or update a todo item on the DOM
+ * @param {object} todo A todo item
+ */
 const renderTodoOnDOM = function (todo) {
 	// Add a todo as li item on the DOM
 	const list = document.querySelector('.todo-list');
@@ -88,6 +95,10 @@ document.querySelector('.todo-list').addEventListener('click', (event) => {
 	console.log(todos);
 });
 
+/**
+ * Make a todo item as done or not
+ * @param {number} id The id of the todo item that we want to change
+ */
 const toggleDone = function (id) {
 	const findTheTodoById = function (id) {
 		return todos.findIndex(function (todo) {
@@ -101,5 +112,3 @@ const toggleDone = function (id) {
 
 	renderTodoOnDOM(thisTodo);
 };
-
-// TODO transition doesn't work
