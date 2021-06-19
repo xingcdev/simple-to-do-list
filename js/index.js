@@ -42,13 +42,13 @@ const renderTodoOnDOM = function (todo) {
 	// We need to update the checkbox to be checked or not, otherwise when replacing the existing item with the new one, the checkbox on the DOM will always be empty
 	let checkboxInput;
 	if (isCompleted) {
-		checkboxInput = `<input type="checkbox" id=${todo.id} class="js-checkbox-input checkbox-input" checked>`;
+		checkboxInput = `<input type="checkbox" class="js-checkbox-input checkbox-input" checked>`;
 	} else {
-		checkboxInput = `<input type="checkbox" id=${todo.id} class="js-checkbox-input checkbox-input">`;
+		checkboxInput = `<input type="checkbox" class="js-checkbox-input checkbox-input">`;
 	}
 
 	newItem.innerHTML = `
-	<label class="checkbox">
+	<label class="todo-text">
 		<span class="checkbox__input">
 			${checkboxInput}
 			<span class="checkbox__control">

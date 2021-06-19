@@ -37,7 +37,7 @@ li {
   /* === Custom checkbox animation === */
   /* === Custom checkbox animation === */
 }
-li label.checkbox {
+li .todo-text {
   display: flex;
   align-items: center;
 }
