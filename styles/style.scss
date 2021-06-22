@@ -103,3 +103,8 @@ li {
 		color: var(--disabled);
 	}
 }
+
+.delete-todo {
+	color: red;
+	cursor: pointer;
+}

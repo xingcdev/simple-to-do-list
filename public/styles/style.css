@@ -90,4 +90,9 @@ li.disabled {
   color: var(--disabled);
 }
 
+.delete-todo {
+  color: red;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=style.css.map */

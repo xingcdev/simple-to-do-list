@@ -1,5 +1,5 @@
 const form = document.querySelector('#form');
-const todos = [];
+let todos = [];
 
 /**
  * Add a todo item into the DOM todo list
@@ -32,6 +32,12 @@ form.addEventListener('submit', (event) => {
  * @param {object} todo A todo item
  */
 const renderTodoOnDOM = function (todo) {
+	if (todo.deleted) {
+		// Remove the item from the DOM
+		document.querySelector(`[data-id='${todo.id}']`).remove();
+		return;
+	}
+
 	// Add a todo as li item on the DOM
 	const list = document.querySelector('.todo-list');
 	const newItem = document.createElement('li');
@@ -135,18 +141,18 @@ const deleteTodo = function (id) {
 	};
 
 	const index = findTheTodoById(id);
-	const currentTodo = todos[index];
 
 	// Create a new object with properties of the current todo item
-	// and a `deleted` property which is set to true
+	// add it a `deleted` property which is set to true
+	const currentTodo = todos[index];
 	const todoToDelete = {
 		...currentTodo,
 		deleted: true,
 	};
-
-	console.log(todoToDelete);
-
 	renderTodoOnDOM(todoToDelete);
+
+	// Array that contains the todos different of the 'id' param
+	todos = todos.filter((todo) => todo.id !== Number(id));
 };
 
 addEventListener();
