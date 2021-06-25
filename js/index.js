@@ -1,4 +1,5 @@
 const form = document.querySelector('#form');
+// Array used to persist the application state
 let todos = [];
 
 /**
@@ -27,13 +28,26 @@ form.addEventListener('submit', (event) => {
 	}
 });
 
+document.addEventListener('DOMContentLoaded', () => restoreTodos());
+
+const restoreTodos = function () {
+	const todosRef = window.localStorage.getItem('todosRef');
+	if (todosRef) {
+		todos = JSON.parse(todosRef);
+		todos.forEach((todo) => {
+			renderTodoOnDOM(todo);
+		});
+	}
+};
+
 /**
  * Add or update a todo item on the DOM
  * @param {object} todo A todo item
  */
 const renderTodoOnDOM = function (todo) {
+	updateLocalStorage();
+
 	if (todo.deleted) {
-		// Remove the item from the DOM
 		document.querySelector(`[data-id='${todo.id}']`).remove();
 		return;
 	}
@@ -86,7 +100,13 @@ const renderTodoOnDOM = function (todo) {
 	}
 };
 
-const addEventListener = function () {
+const updateLocalStorage = function () {
+	// Only strings may be stored in the localStorage,
+	// so we need to convert our todos array to a JSON string
+	window.localStorage.setItem('todosRef', JSON.stringify(todos));
+};
+
+const main = function () {
 	// Instead of listening for clicks on individual checkbox elements,
 	// we are listening for clicks on the entire list container.
 	document.querySelector('.todo-list').addEventListener('click', (event) => {
@@ -139,7 +159,6 @@ const deleteTodo = function (id) {
 			return todo.id === Number(id);
 		});
 	};
-
 	const index = findTheTodoById(id);
 
 	// Create a new object with properties of the current todo item
@@ -149,12 +168,11 @@ const deleteTodo = function (id) {
 		...currentTodo,
 		deleted: true,
 	};
-	renderTodoOnDOM(todoToDelete);
 
 	// Array that contains the todos different of the 'id' param
 	todos = todos.filter((todo) => todo.id !== Number(id));
+
+	renderTodoOnDOM(todoToDelete);
 };
 
-addEventListener();
-
-// TODO update the function renderTodoOnDOM
+main();
