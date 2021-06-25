@@ -11,8 +11,8 @@
 - [ ] History of todo items ?
 - [ ] Fix transitions ?
 
-https://webdesign.tutsplus.com/tutorials/watch-and-compile-sass-in-five-quick-steps--cms-28275 Watch and Compile Sass in Five Quick Steps
-
 ## References
 
-https://freshman.tech/todo-list/#get-started
+[To-do list design by Frontend mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW)
+
+[How to build a Todo List App with JavaScript - Freshman](https://freshman.tech/todo-list/)
