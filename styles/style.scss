@@ -1,3 +1,9 @@
+$very-light-gray: hsl(0, 0%, 98%);
+$very-light-grayish-blue: hsl(236, 33%, 92%);
+$light-grayish-blue: hsl(233, 11%, 84%);
+$dark-grayish-blue: hsl(236, 9%, 61%);
+$very-dark-grayish-blue: hsl(235, 19%, 35%);
+
 :root {
 	--disabled: #959495;
 }
@@ -15,16 +21,25 @@ html {
 }
 
 body {
-	font-size: 23px;
-	font-family: sans-serif;
-
-	main {
-		padding: 0.5rem;
-	}
+	font-size: 18px;
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: normal;
 }
 
-h1 {
-	margin-bottom: 2rem;
+header {
+	width: 100%;
+	height: 25vh;
+	background-image: url(/images/bg-mobile-light.jpg);
+	font-size: 1.5rem;
+	color: $very-light-gray;
+
+	.header-content {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		justify-content: space-between;
+		padding: 3rem 1rem;
+	}
 }
 
 .todo-list {
