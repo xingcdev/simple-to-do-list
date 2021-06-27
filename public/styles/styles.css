@@ -72,6 +72,9 @@ header .header-content .title {
   flex: 1 1 auto;
   border: none;
 }
+.todo-list form .todo-input:focus {
+  outline: none;
+}
 .todo-list .todo-items {
   background: #fff;
   border-radius: 5px;
