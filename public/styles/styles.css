@@ -99,11 +99,17 @@ header .header-content .title {
 .todo-item .todo-text {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .todo-item .checkbox__input {
   display: inline-grid;
   grid-template-areas: "checkbox";
-  margin-right: 0.5rem;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 30px;
+  border: 1px solid #e4e5f1;
+  text-align: center;
+  margin-right: 1rem;
   /* Hide the browser's default checkbox, keep it accessible by the keyboard */
 }
 .todo-item .checkbox__input > * {
@@ -111,43 +117,39 @@ header .header-content .title {
 }
 .todo-item .checkbox__input input {
   opacity: 0;
+  /* Relative to the font-size applied to the li */
   width: 1em;
   height: 1em;
 }
-.todo-item .checkbox__control {
-  display: inline-block;
-  /* Relative to the font-size applied to the li */
-  width: 1.2em;
-  height: 1.2em;
-  margin-right: 1rem;
-  border-radius: 30px;
-  border: 1px solid #e4e5f1;
-}
-.todo-item .checkbox__control svg {
+.todo-item .checkbox__checkIcon svg {
   transition: transform 2s ease-in 25ms;
   transform: scale(0);
   transform-origin: bottom left;
 }
-.todo-item .checkbox__input input:checked + .checkbox__control svg {
+.todo-item .checkbox__input input:checked + .checkbox__checkIcon svg {
   transform: scale(1);
 }
-.todo-item.isCompleted .checkbox__input {
-  background-color: #3673c7cb;
+.todo-item.isCompleted {
+  background: #fafafa;
+  color: #e4e5f1;
 }
-.todo-item .checkbox__input input:focus + .checkbox__control {
+.todo-item.isCompleted .checkbox__input {
+  background: linear-gradient(#57ddff, #c058f3);
+}
+.todo-item .checkbox__input input:focus + .checkbox__checkIcon {
   box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor;
   /* Same color as the li */
 }
-.todo-item .checkbox__input input:checkbox:disabled + .checkbox__control {
+.todo-item .checkbox__input input:checkbox:disabled + .checkbox__checkIcon {
   color: var(--disabled);
+}
+.todo-item .delete-todo {
+  cursor: pointer;
+  width: 1em;
+  height: 1em;
 }
 .todo-item.disabled {
   color: var(--disabled);
-}
-
-.delete-todo {
-  color: red;
-  cursor: pointer;
 }
 
 .empty-stat {

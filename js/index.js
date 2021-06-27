@@ -71,26 +71,15 @@ const renderTodoOnDOM = function (todo) {
 	<label class="todo-text">
 		<span class="checkbox__input">
 			${checkboxInput}
-			<span class="checkbox__control">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-					aria-hidden="true"
-					focusable="false"
-				>
-					<path
-						fill="none"
-						stroke="white"
-						stroke-width="3"
-						d="M1.73 12.91l6.37 6.37L22.79 4.59"
-					/>
+			<span class="checkbox__checkIcon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+					<path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/>
 				</svg>
 			</span>
 		</span> 
 		<span class="label">${todo.text}</span>
 	</label>
-
-	<a class="delete-todo js-delete-todo">x</a>`;
+	<svg class="delete-todo js-delete-todo" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>`;
 
 	const existingItem = document.querySelector(`[data-id='${todo.id}']`);
 	if (existingItem) {

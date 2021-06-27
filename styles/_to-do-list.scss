@@ -62,6 +62,7 @@
 	.todo-text {
 		display: flex;
 		align-items: center;
+		cursor: pointer;
 	}
 
 	.checkbox__input {
@@ -73,59 +74,62 @@
 			grid-area: checkbox;
 		}
 
-		margin-right: 0.5rem;
+		width: 1.2em;
+		height: 1.2em;
+		border-radius: 30px;
+		border: 1px solid variables.$very-light-grayish-blue;
+		text-align: center;
+		margin-right: 1rem;
 
 		/* Hide the browser's default checkbox, keep it accessible by the keyboard */
 		input {
 			opacity: 0;
+			/* Relative to the font-size applied to the li */
 			width: 1em;
 			height: 1em;
 		}
 	}
 
-	.checkbox__control {
-		display: inline-block;
-		/* Relative to the font-size applied to the li */
-		width: 1.2em;
-		height: 1.2em;
-		margin-right: 1rem;
-		border-radius: 30px;
-		border: 1px solid variables.$very-light-grayish-blue;
-	}
-
 	/* === Custom checkbox animation === */
 
-	.checkbox__control svg {
+	.checkbox__checkIcon svg {
 		transition: transform 2s ease-in 25ms;
 		transform: scale(0);
 		transform-origin: bottom left;
 	}
-	.checkbox__input input:checked + .checkbox__control svg {
+	.checkbox__input input:checked + .checkbox__checkIcon svg {
 		transform: scale(1);
 	}
 	/* === Custom checkbox animation === */
 
 	&.isCompleted {
+		& {
+			background: variables.$very-light-gray;
+			color: variables.$very-light-grayish-blue;
+		}
+
 		.checkbox__input {
-			background-color: #3673c7cb;
+			background: variables.$check-background;
 		}
 	}
 
-	.checkbox__input input:focus + .checkbox__control {
+	.checkbox__input input:focus + .checkbox__checkIcon {
 		box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor; /* Same color as the li */
 	}
 
-	.checkbox__input input:checkbox:disabled + .checkbox__control {
+	.checkbox__input input:checkbox:disabled + .checkbox__checkIcon {
 		color: var(--disabled);
 	}
+
+	.delete-todo {
+		cursor: pointer;
+		width: 1em;
+		height: 1em;
+	}
+
 	&.disabled {
 		color: var(--disabled);
 	}
-}
-
-.delete-todo {
-	color: red;
-	cursor: pointer;
 }
 
 .empty-stat {
