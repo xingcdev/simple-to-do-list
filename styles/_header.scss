@@ -1,0 +1,31 @@
+@use "variables";
+
+header {
+	height: 25vh;
+	padding: 3rem 1.5rem 0 1.5rem;
+	// Relative path to public/styles/
+	background-image: url(../../images/bg-mobile-light.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	color: variables.$very-light-gray;
+
+	.header-content {
+		display: flex;
+		justify-content: space-between;
+		max-width: 500px;
+		margin: 0 auto;
+
+		.title {
+			letter-spacing: 10px;
+		}
+	}
+}
+
+@media screen and (min-width: 800px) {
+	header {
+		// Reset the mobile background image
+		background-image: none;
+		background-image: url(../../images/bg-desktop-light.jpg);
+	}
+}
