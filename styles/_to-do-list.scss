@@ -1,0 +1,143 @@
+@use "variables";
+
+.todo-list {
+	max-width: 500px;
+	width: 85%;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 2rem;
+	margin-top: -6rem;
+
+	form {
+		display: flex;
+		width: 100%;
+		padding: 1rem;
+		border-radius: 5px;
+		border: none;
+		margin-bottom: 1rem;
+		background: #fff;
+
+		.icon {
+			display: inline-block;
+			margin-right: 1rem;
+			width: 1.2em;
+			height: 1.2em;
+			border-radius: 30px;
+			border: 1px solid variables.$very-light-grayish-blue;
+		}
+
+		.todo-input {
+			flex: 1 1 auto;
+			border: none;
+		}
+	}
+
+	.todo-items {
+		background: #fff;
+		border-radius: 5px;
+	}
+
+	&:empty {
+		display: none;
+	}
+}
+
+.todo-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	width: 100%;
+	padding: 1.2rem;
+	// Remove the animation of adding a 1px
+	border-bottom: 1px solid variables.$very-light-grayish-blue;
+	position: relative;
+	color: variables.$very-dark-grayish-blue;
+
+	.todo-text {
+		display: flex;
+		align-items: center;
+	}
+
+	.checkbox__input {
+		// The default checkbox and the custom checkbox are overlapping
+		// This technique is the modern replacement for position: absolute
+		display: inline-grid;
+		grid-template-areas: 'checkbox';
+		> * {
+			grid-area: checkbox;
+		}
+
+		margin-right: 0.5rem;
+
+		/* Hide the browser's default checkbox, keep it accessible by the keyboard */
+		input {
+			opacity: 0;
+			width: 1em;
+			height: 1em;
+		}
+	}
+
+	.checkbox__control {
+		display: inline-block;
+		/* Relative to the font-size applied to the li */
+		width: 1.2em;
+		height: 1.2em;
+		margin-right: 1rem;
+		border-radius: 30px;
+		border: 1px solid variables.$very-light-grayish-blue;
+	}
+
+	/* === Custom checkbox animation === */
+
+	.checkbox__control svg {
+		transition: transform 2s ease-in 25ms;
+		transform: scale(0);
+		transform-origin: bottom left;
+	}
+	.checkbox__input input:checked + .checkbox__control svg {
+		transform: scale(1);
+	}
+	/* === Custom checkbox animation === */
+
+	&.isCompleted {
+		.checkbox__input {
+			background-color: #3673c7cb;
+		}
+	}
+
+	.checkbox__input input:focus + .checkbox__control {
+		box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor; /* Same color as the li */
+	}
+
+	.checkbox__input input:checkbox:disabled + .checkbox__control {
+		color: var(--disabled);
+	}
+	&.disabled {
+		color: var(--disabled);
+	}
+}
+
+.delete-todo {
+	color: red;
+	cursor: pointer;
+}
+
+.empty-stat {
+	text-align: center;
+	display: none;
+
+	.empty-stat-title {
+		font-size: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.empty-stat-message {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+}
+
+.todo-list:empty + .empty-stat {
+	display: block;
+}

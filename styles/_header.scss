@@ -1,7 +1,7 @@
 @use "variables";
 
 header {
-	height: 25vh;
+	height: 30vh;
 	padding: 3rem 1.5rem 0 1.5rem;
 	// Relative path to public/styles/
 	background-image: url(../../images/bg-mobile-light.jpg);
@@ -17,7 +17,7 @@ header {
 		margin: 0 auto;
 
 		.title {
-			letter-spacing: 10px;
+			letter-spacing: 5px;
 		}
 	}
 }

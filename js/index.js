@@ -53,7 +53,7 @@ const renderTodoOnDOM = function (todo) {
 	}
 
 	// Add a todo as li item on the DOM
-	const list = document.querySelector('.todo-list');
+	const list = document.querySelector('.todo-list .todo-items');
 	const newItem = document.createElement('li');
 	const isCompleted = todo.isCompleted ? 'isCompleted' : '';
 	newItem.setAttribute('class', `todo-item ${isCompleted}`);
