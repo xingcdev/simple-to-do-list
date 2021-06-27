@@ -1,21 +1,30 @@
 @use "variables";
 
 .todo-list {
+	position: relative;
 	max-width: 500px;
 	width: 85%;
 	margin: 0 auto;
 	text-align: center;
 	margin-bottom: 2rem;
 	margin-top: -6rem;
+	// Shadow source: https://getcssscan.com/css-box-shadow-examples
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+	form,
+	.todo-item,
+	.todo-settings,
+	.todo-filter {
+		background: #fff;
+		padding: 1.2rem;
+	}
 
 	form {
 		display: flex;
 		width: 100%;
-		padding: 1rem;
 		border-radius: 5px;
 		border: none;
 		margin-bottom: 1rem;
-		background: #fff;
 
 		.icon {
 			display: inline-block;
@@ -37,9 +46,32 @@
 		}
 	}
 
-	.todo-items {
-		background: #fff;
+	.todo-body {
 		border-radius: 5px;
+	}
+
+	.todo-settings {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 0.9rem;
+		color: variables.$dark-grayish-blue;
+	}
+
+	.todo-filter {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		width: 100%;
+		bottom: -5rem;
+		font-size: 1.2rem;
+		font-weight: bold;
+		border-radius: 5px;
+		.all,
+		.active {
+			margin-right: 1rem;
+		}
 	}
 
 	&:empty {
@@ -53,7 +85,6 @@
 	align-items: center;
 
 	width: 100%;
-	padding: 1.2rem;
 	// Remove the animation of adding a 1px
 	border-bottom: 1px solid variables.$very-light-grayish-blue;
 	position: relative;
