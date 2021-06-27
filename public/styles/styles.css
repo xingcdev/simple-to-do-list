@@ -71,6 +71,7 @@ header .header-content .title {
 .todo-list form .todo-input {
   flex: 1 1 auto;
   border: none;
+  color: #9394a5;
 }
 .todo-list form .todo-input:focus {
   outline: none;
