@@ -90,7 +90,7 @@
 		cursor: pointer;
 
 		& > *:hover {
-			color: variables.$very-dark-grayish-blue;
+			color: variables.$text-color;
 		}
 	}
 
@@ -107,7 +107,7 @@
 	.clear-todos {
 		cursor: pointer;
 		&:hover {
-			color: variables.$very-dark-grayish-blue;
+			color: variables.$text-color;
 		}
 	}
 
@@ -125,7 +125,7 @@
 	// Remove the animation of adding a 1px
 	border-bottom: 1px solid variables.$very-light-grayish-blue;
 	position: relative;
-	color: variables.$very-dark-grayish-blue;
+	color: variables.$text-color;
 
 	.todo-text {
 		display: flex;
@@ -172,7 +172,7 @@
 
 	&.isCompleted {
 		& {
-			background: variables.$very-light-gray;
+			background: variables.$background;
 			color: variables.$very-light-grayish-blue;
 		}
 
