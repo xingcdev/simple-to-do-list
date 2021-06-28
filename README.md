@@ -74,6 +74,19 @@ Parse
 
 SCSS modules
 
+#### Border radius
+
+the child div's overflow can give the impression that the border-radius isn't working.
+
+```css
+.todo-body {
+	overflow: hidden;
+	border-radius: 5px;
+}
+```
+
+Source : https://stackoverflow.com/a/53964887
+
 ```html
 <h1>Some HTML code I'm proud of</h1>
 ```
