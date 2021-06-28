@@ -8,13 +8,11 @@
 	text-align: center;
 	margin-bottom: 2rem;
 	margin-top: -6rem;
-	// Shadow source: https://getcssscan.com/css-box-shadow-examples
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 	form,
 	.todo-item,
 	.todo-settings,
-	.todo-filter {
+	.mobile-todo-filter {
 		background: #fff;
 		padding: 1.2rem;
 	}
@@ -47,7 +45,13 @@
 	}
 
 	.todo-body {
+		// Make border-radius works, see: https://stackoverflow.com/a/53964887
+		overflow: hidden;
 		border-radius: 5px;
+
+		margin-bottom: 1.2rem;
+		// Shadow source: https://getcssscan.com/css-box-shadow-examples
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	}
 
 	.todo-settings {
@@ -58,20 +62,28 @@
 		color: variables.$dark-grayish-blue;
 	}
 
-	.todo-filter {
+	.mobile-todo-filter {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		position: absolute;
-		width: 100%;
-		bottom: -5rem;
-		font-size: 1.2rem;
 		font-weight: bold;
 		border-radius: 5px;
+		color: variables.$dark-grayish-blue;
+		// Shadow source: https://getcssscan.com/css-box-shadow-examples
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+		& > *:hover {
+			color: variables.$primary;
+		}
+
 		.all,
 		.active {
 			margin-right: 1rem;
 		}
+	}
+
+	.desktop-todo-filter {
+		display: none;
 	}
 
 	&:empty {

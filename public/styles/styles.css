@@ -51,12 +51,11 @@ header .header-content .title {
   text-align: center;
   margin-bottom: 2rem;
   margin-top: -6rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .todo-list form,
 .todo-list .todo-item,
 .todo-list .todo-settings,
-.todo-list .todo-filter {
+.todo-list .mobile-todo-filter {
   background: #fff;
   padding: 1.2rem;
 }
@@ -84,7 +83,10 @@ header .header-content .title {
   outline: none;
 }
 .todo-list .todo-body {
+  overflow: hidden;
   border-radius: 5px;
+  margin-bottom: 1.2rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .todo-list .todo-settings {
   display: flex;
@@ -93,20 +95,24 @@ header .header-content .title {
   font-size: 0.9rem;
   color: #9394a5;
 }
-.todo-list .todo-filter {
+.todo-list .mobile-todo-filter {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  width: 100%;
-  bottom: -5rem;
-  font-size: 1.2rem;
   font-weight: bold;
   border-radius: 5px;
+  color: #9394a5;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.todo-list .todo-filter .all,
-.todo-list .todo-filter .active {
+.todo-list .mobile-todo-filter > *:hover {
+  color: #3a7bfd;
+}
+.todo-list .mobile-todo-filter .all,
+.todo-list .mobile-todo-filter .active {
   margin-right: 1rem;
+}
+.todo-list .desktop-todo-filter {
+  display: none;
 }
 .todo-list:empty {
   display: none;
