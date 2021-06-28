@@ -18,6 +18,11 @@ body {
   color: #484b6a;
 }
 
+main {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 header {
   height: 30vh;
   padding: 3rem 1.5rem 0 1.5rem;
@@ -49,7 +54,7 @@ header .header-content .title {
   width: 85%;
   margin: 0 auto;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   margin-top: -6rem;
 }
 .todo-list form,
@@ -222,6 +227,10 @@ header .header-content .title {
 
 .todo-list:empty + .empty-stat {
   display: block;
+}
+
+.todo-info {
+  color: #9394a5;
 }
 
 :root {
