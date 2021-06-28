@@ -165,3 +165,7 @@ const deleteTodo = function (id) {
 };
 
 main();
+
+// TODO update counter
+
+const updateCounter = function () {};
