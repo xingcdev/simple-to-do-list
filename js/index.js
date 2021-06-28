@@ -46,6 +46,7 @@ const restoreTodos = function () {
  */
 const renderTodoOnDOM = function (todo) {
 	updateLocalStorage();
+	updateCounter();
 
 	if (todo.deleted) {
 		document.querySelector(`[data-id='${todo.id}']`).remove();
@@ -164,8 +165,12 @@ const deleteTodo = function (id) {
 	renderTodoOnDOM(todoToDelete);
 };
 
+/**
+ * Display the number of todo items on DOM
+ */
+const updateCounter = function () {
+	const count = todos.length;
+	document.querySelector('.count').innerHTML = count;
+};
+
 main();
-
-// TODO update counter
-
-const updateCounter = function () {};
