@@ -62,28 +62,53 @@
 		color: variables.$dark-grayish-blue;
 	}
 
-	.mobile-todo-filter {
+	.mobile-todo-filter,
+	.desktop-todo-filter {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		font-weight: bold;
+
+		& > * {
+			margin-right: 0.9rem;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.mobile-todo-filter {
 		border-radius: 5px;
 		color: variables.$dark-grayish-blue;
 		// Shadow source: https://getcssscan.com/css-box-shadow-examples
 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-		& > *:hover {
-			color: variables.$primary;
-		}
-
-		.all,
-		.active {
-			margin-right: 1rem;
-		}
 	}
 
 	.desktop-todo-filter {
 		display: none;
+		cursor: pointer;
+
+		& > *:hover {
+			color: variables.$very-dark-grayish-blue;
+		}
+	}
+
+	@media screen and (min-width: 800px) {
+		.mobile-todo-filter {
+			display: none;
+		}
+
+		.desktop-todo-filter {
+			display: flex;
+		}
+	}
+
+	.clear-todos {
+		cursor: pointer;
+		&:hover {
+			color: variables.$very-dark-grayish-blue;
+		}
 	}
 
 	&:empty {
