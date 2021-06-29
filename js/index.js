@@ -1,10 +1,9 @@
-const form = document.querySelector('#form');
 // Array used to persist the application state
 let todos = [];
 
 /**
  * Add a todo item into the DOM todo list
- * @param {text} text A text of a todo item
+ * @param {string} text A text of a todo item
  */
 const addTodo = function (text) {
 	const todo = {
@@ -16,28 +15,48 @@ const addTodo = function (text) {
 	renderTodoOnDOM(todo);
 };
 
-form.addEventListener('submit', (event) => {
-	// Prevent page refresh on form submission
-	event.preventDefault();
-	const input = document.querySelector('#js-todo-input');
-	// Remove whitespace from the beginning and end of the string
-	const text = input.value.trim();
-	if (text) {
-		addTodo(text);
-		input.value = '';
-	}
-});
-
-document.addEventListener('DOMContentLoaded', () => restoreTodos());
-
-const restoreTodos = function () {
-	const todosRef = window.localStorage.getItem('todosRef');
-	if (todosRef) {
-		todos = JSON.parse(todosRef);
-		todos.forEach((todo) => {
-			renderTodoOnDOM(todo);
+/**
+ * Delete a todo item
+ * @param {number} id The id of the todo item that we want to delete
+ */
+const deleteTodo = function (id) {
+	const findTheTodoById = function (id) {
+		return todos.findIndex(function (todo) {
+			return todo.id === Number(id);
 		});
-	}
+	};
+	const index = findTheTodoById(id);
+
+	// Create a new object with properties of the current todo item
+	// add it a `deleted` property which is set to true
+	const currentTodo = todos[index];
+	const todoToDelete = {
+		...currentTodo,
+		deleted: true,
+	};
+
+	// Array that contains the todos different of the 'id' param
+	todos = todos.filter((todo) => todo.id !== Number(id));
+
+	renderTodoOnDOM(todoToDelete);
+};
+
+/**
+ * Make a todo item as done or not
+ * @param {number} id The id of the todo item that we want to change
+ */
+const toggleCompleted = function (id) {
+	const findTheTodoById = function (id) {
+		return todos.findIndex(function (todo) {
+			return todo.id === Number(id);
+		});
+	};
+
+	const index = findTheTodoById(id);
+	const thisTodo = todos[index];
+	thisTodo.isCompleted = !thisTodo.isCompleted;
+
+	renderTodoOnDOM(thisTodo);
 };
 
 /**
@@ -96,7 +115,27 @@ const updateLocalStorage = function () {
 	window.localStorage.setItem('todosRef', JSON.stringify(todos));
 };
 
+/**
+ * Display the number of todo items on DOM
+ */
+const updateCounter = function () {
+	const count = todos.length;
+	document.querySelector('.count').innerHTML = count;
+};
+
 const main = function () {
+	document.querySelector('#form').addEventListener('submit', (event) => {
+		// Prevent page refresh on form submission
+		event.preventDefault();
+		const input = document.querySelector('#js-todo-input');
+		// Remove whitespace from the beginning and end of the string
+		const text = input.value.trim();
+		if (text) {
+			addTodo(text);
+			input.value = '';
+		}
+	});
+
 	// Instead of listening for clicks on individual checkbox elements,
 	// we are listening for clicks on the entire list container.
 	document.querySelector('.todo-list').addEventListener('click', (event) => {
@@ -108,7 +147,7 @@ const main = function () {
 			const liElement =
 				clickedElement.parentElement.parentElement.parentElement;
 			const itemId = liElement.dataset.id;
-			toggleDone(itemId);
+			toggleCompleted(itemId);
 		}
 
 		if (clickedElement.classList.contains('js-delete-todo')) {
@@ -119,58 +158,17 @@ const main = function () {
 			deleteTodo(itemId);
 		}
 	});
-};
 
-/**
- * Make a todo item as done or not
- * @param {number} id The id of the todo item that we want to change
- */
-const toggleDone = function (id) {
-	const findTheTodoById = function (id) {
-		return todos.findIndex(function (todo) {
-			return todo.id === Number(id);
-		});
+	document.addEventListener('DOMContentLoaded', () => restoreTodos());
+	const restoreTodos = function () {
+		const todosRef = window.localStorage.getItem('todosRef');
+		if (todosRef) {
+			todos = JSON.parse(todosRef);
+			todos.forEach((todo) => {
+				renderTodoOnDOM(todo);
+			});
+		}
 	};
-
-	const index = findTheTodoById(id);
-	const thisTodo = todos[index];
-	thisTodo.isCompleted = !thisTodo.isCompleted;
-
-	renderTodoOnDOM(thisTodo);
-};
-
-/**
- * Delete a todo item
- * @param {number} id The id of the todo item that we want to delete
- */
-const deleteTodo = function (id) {
-	const findTheTodoById = function (id) {
-		return todos.findIndex(function (todo) {
-			return todo.id === Number(id);
-		});
-	};
-	const index = findTheTodoById(id);
-
-	// Create a new object with properties of the current todo item
-	// add it a `deleted` property which is set to true
-	const currentTodo = todos[index];
-	const todoToDelete = {
-		...currentTodo,
-		deleted: true,
-	};
-
-	// Array that contains the todos different of the 'id' param
-	todos = todos.filter((todo) => todo.id !== Number(id));
-
-	renderTodoOnDOM(todoToDelete);
-};
-
-/**
- * Display the number of todo items on DOM
- */
-const updateCounter = function () {
-	const count = todos.length;
-	document.querySelector('.count').innerHTML = count;
 };
 
 main();
