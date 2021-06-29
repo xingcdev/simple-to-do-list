@@ -129,8 +129,15 @@
 
 	.todo-text {
 		display: flex;
+		justify-content: center;
 		align-items: center;
 		cursor: pointer;
+		flex: 0 1 auto;
+
+		.label {
+			flex: 0 1 auto;
+			word-wrap: break-word;
+		}
 	}
 
 	.checkbox__input {
@@ -155,6 +162,8 @@
 			/* Relative to the font-size applied to the li */
 			width: 1em;
 			height: 1em;
+			cursor: pointer;
+			border-radius: 30px;
 		}
 	}
 

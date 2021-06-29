@@ -158,8 +158,14 @@ header .header-content .title {
 }
 .todo-item .todo-text {
   display: flex;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
+  flex: 0 1 auto;
+}
+.todo-item .todo-text .label {
+  flex: 0 1 auto;
+  word-wrap: break-word;
 }
 .todo-item .checkbox__input {
   display: inline-grid;
@@ -180,6 +186,8 @@ header .header-content .title {
   /* Relative to the font-size applied to the li */
   width: 1em;
   height: 1em;
+  cursor: pointer;
+  border-radius: 30px;
 }
 .todo-item .checkbox__checkIcon svg {
   transition: transform 2s ease-in 25ms;
