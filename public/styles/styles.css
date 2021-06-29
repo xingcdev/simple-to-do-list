@@ -162,10 +162,13 @@ header .header-content .title {
   align-items: center;
   cursor: pointer;
   flex: 0 1 auto;
+  max-width: 87%;
+}
+.todo-item .todo-text .checkbox__input {
+  flex: 0 0 auto;
 }
 .todo-item .todo-text .label {
-  flex: 0 1 auto;
-  word-wrap: break-word;
+  word-break: break-all;
 }
 .todo-item .checkbox__input {
   display: inline-grid;

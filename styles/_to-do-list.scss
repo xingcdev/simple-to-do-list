@@ -133,10 +133,15 @@
 		align-items: center;
 		cursor: pointer;
 		flex: 0 1 auto;
+		max-width: 87%;
+
+		.checkbox__input {
+			// Don't grow or shrink the input icon
+			flex: 0 0 auto;
+		}
 
 		.label {
-			flex: 0 1 auto;
-			word-wrap: break-word;
+			word-break: break-all;
 		}
 	}
 
