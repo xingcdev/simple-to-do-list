@@ -121,6 +121,8 @@ const renderTodoOnDOM = function (todo) {
 	} else {
 		list.append(newItem);
 	}
+
+	// TODO add a function to add, update, render from a array when we clicked on each filter buttons
 };
 
 const updateLocalStorage = function () {
@@ -135,6 +137,41 @@ const updateLocalStorage = function () {
 const updateCounter = function () {
 	const count = todos.length;
 	document.querySelector('.count').innerHTML = count;
+};
+
+const todoFilters = function () {
+	// add click
+	document.querySelector('.todo-filters').addEventListener('click', (event) => {
+		const clickedElement = event.target;
+
+		if (clickedElement.classList.contains('filter-button')) {
+			document.querySelectorAll('.filter-button').forEach((filterButton) => {
+				filterButton.classList.remove('active');
+			});
+
+			clickedElement.classList.add('active');
+		}
+
+		if (clickedElement.classList.contains('js-filter-completed')) {
+			const completedTodos = todos.filter((todo) => todo.isCompleted === true);
+			console.log(completedTodos);
+			completedTodos.forEach((todo) => renderTodoOnDOM(todo));
+		}
+
+		if (clickedElement.classList.contains('js-filter-active')) {
+			const activeTodos = todos.filter((todo) => todo.isCompleted !== true);
+			activeTodos.forEach((todo) => renderTodoOnDOM(todo));
+		}
+
+		if (clickedElement.classList.contains('js-filter-all')) {
+			todos.forEach((todo) => renderTodoOnDOM(todo));
+		}
+	});
+	// SI l'element clické est completed
+	// Alors display flex sur tous les élement complété
+	// Sinon si c'est active
+	// display none sur tous les élement complété
+	// sinon disply flex sur tous les éléments non visibles
 };
 
 const main = function () {
@@ -187,6 +224,8 @@ const main = function () {
 			});
 		}
 	};
+
+	todoFilters();
 };
 
 main();

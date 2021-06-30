@@ -58,7 +58,7 @@ header .header-content .title {
 .todo-list form,
 .todo-list .todo-item,
 .todo-list .todo-settings,
-.todo-list .mobile-todo-filter {
+.todo-list .mobile-todo-filters {
   background: #fff;
   padding: 1.2rem;
 }
@@ -97,41 +97,6 @@ header .header-content .title {
   align-items: center;
   font-size: 0.9rem;
   color: #9394a5;
-}
-.todo-list .mobile-todo-filter,
-.todo-list .desktop-todo-filter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-}
-.todo-list .mobile-todo-filter > *,
-.todo-list .desktop-todo-filter > * {
-  margin-right: 0.9rem;
-}
-.todo-list .mobile-todo-filter > *:last-child,
-.todo-list .desktop-todo-filter > *:last-child {
-  margin-right: 0;
-}
-.todo-list .mobile-todo-filter {
-  border-radius: 5px;
-  color: #9394a5;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-.todo-list .desktop-todo-filter {
-  display: none;
-  cursor: pointer;
-}
-.todo-list .desktop-todo-filter > *:hover {
-  color: #484b6a;
-}
-@media screen and (min-width: 800px) {
-  .todo-list .mobile-todo-filter {
-    display: none;
-  }
-  .todo-list .desktop-todo-filter {
-    display: flex;
-  }
 }
 .todo-list .clear-completed {
   cursor: pointer;
@@ -241,6 +206,51 @@ header .header-content .title {
 .todo-info {
   text-align: center;
   color: #9394a5;
+}
+
+.hide {
+  display: none;
+}
+
+.todo-filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+.todo-filters > * {
+  margin-right: 0.9rem;
+}
+.todo-filters > *:last-child {
+  margin-right: 0;
+}
+.todo-filters > *:hover {
+  color: #484b6a;
+}
+
+.mobile-todo-filters {
+  border-radius: 5px;
+  color: #9394a5;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.desktop-todo-filters {
+  display: none;
+}
+
+@media screen and (min-width: 800px) {
+  .mobile-todo-filters {
+    display: none;
+  }
+
+  .desktop-todo-filters {
+    display: flex;
+  }
+}
+.mobile-todo-filters > *.active,
+.desktop-todo-filters > *.active {
+  color: #3a7bfd;
 }
 
 :root {

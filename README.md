@@ -113,10 +113,8 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [How to build a Todo List App with JavaScript - Freshman](https://freshman.tech/todo-list/) - This helped me to build a to-do list app using JavaScript. I really liked this tutorial because the author explains why he is using that code.
+- [Pure CSS Custom Checkbox Style - Modern CSS Solutions](https://moderncss.dev/pure-css-custom-checkbox-style/) - This is an amazing article which helped me customizing the HTML checkbox. I like this tutorial because it was build with modern CSS Grid.
 
 ## Author
 
@@ -135,5 +133,3 @@ This is where you can give a hat tip to anyone who helped you out on this projec
 ## References
 
 [To-do list design by Frontend mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW)
-
-[How to build a Todo List App with JavaScript - Freshman](https://freshman.tech/todo-list/)

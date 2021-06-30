@@ -11,7 +11,7 @@
 	form,
 	.todo-item,
 	.todo-settings,
-	.mobile-todo-filter {
+	.mobile-todo-filters {
 		background: #fff;
 		padding: 1.2rem;
 	}
@@ -59,48 +59,6 @@
 		align-items: center;
 		font-size: 0.9rem;
 		color: variables.$dark-grayish-blue;
-	}
-
-	.mobile-todo-filter,
-	.desktop-todo-filter {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-weight: bold;
-
-		& > * {
-			margin-right: 0.9rem;
-
-			&:last-child {
-				margin-right: 0;
-			}
-		}
-	}
-
-	.mobile-todo-filter {
-		border-radius: 5px;
-		color: variables.$dark-grayish-blue;
-		// Shadow source: https://getcssscan.com/css-box-shadow-examples
-		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-	}
-
-	.desktop-todo-filter {
-		display: none;
-		cursor: pointer;
-
-		& > *:hover {
-			color: variables.$text-color;
-		}
-	}
-
-	@media screen and (min-width: 800px) {
-		.mobile-todo-filter {
-			display: none;
-		}
-
-		.desktop-todo-filter {
-			display: flex;
-		}
 	}
 
 	.clear-completed {
@@ -235,4 +193,8 @@
 .todo-info {
 	text-align: center;
 	color: variables.$dark-grayish-blue;
+}
+
+.hide {
+	display: none;
 }

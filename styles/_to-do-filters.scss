@@ -1,0 +1,50 @@
+@use "variables";
+
+.todo-filters {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	cursor: pointer;
+
+	& > * {
+		margin-right: 0.9rem;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&:hover {
+			color: variables.$text-color;
+		}
+	}
+}
+
+.mobile-todo-filters {
+	border-radius: 5px;
+	color: variables.$dark-grayish-blue;
+	// Shadow source: https://getcssscan.com/css-box-shadow-examples
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.desktop-todo-filters {
+	display: none;
+}
+
+@media screen and (min-width: 800px) {
+	.mobile-todo-filters {
+		display: none;
+	}
+
+	.desktop-todo-filters {
+		display: flex;
+	}
+}
+
+// Filters
+.mobile-todo-filters,
+.desktop-todo-filters {
+	& > *.active {
+		color: variables.$primary;
+	}
+}
