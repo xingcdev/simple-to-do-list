@@ -5,7 +5,6 @@
 	max-width: 500px;
 	width: 85%;
 	margin: 0 auto;
-	text-align: center;
 	margin-bottom: 3rem;
 	margin-top: -6rem;
 
@@ -141,7 +140,7 @@
 		}
 
 		.label {
-			word-break: break-all;
+			word-break: break-word;
 		}
 	}
 
@@ -234,5 +233,6 @@
 }
 
 .todo-info {
+	text-align: center;
 	color: variables.$dark-grayish-blue;
 }
