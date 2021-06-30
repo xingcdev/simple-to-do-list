@@ -60,6 +60,20 @@ const toggleCompleted = function (id) {
 };
 
 /**
+ * Delete all completed todos
+ */
+const clearCompleted = function () {
+	if (!todos) return;
+
+	todos.forEach((todo) => {
+		if (todo.isCompleted) {
+			deleteTodo(todo.id);
+			console.log('cleared');
+		}
+	});
+};
+
+/**
  * Add or update a todo item on the DOM
  * @param {object} todo A todo item
  */
@@ -156,6 +170,10 @@ const main = function () {
 			const liElement = clickedElement.parentElement;
 			const itemId = liElement.dataset.id;
 			deleteTodo(itemId);
+		}
+
+		if (clickedElement.classList.contains('js-clear-completed')) {
+			clearCompleted();
 		}
 	});
 

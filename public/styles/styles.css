@@ -133,10 +133,10 @@ header .header-content .title {
     display: flex;
   }
 }
-.todo-list .clear-todos {
+.todo-list .clear-completed {
   cursor: pointer;
 }
-.todo-list .clear-todos:hover {
+.todo-list .clear-completed:hover {
   color: #484b6a;
 }
 .todo-list:empty {

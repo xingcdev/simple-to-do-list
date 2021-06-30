@@ -103,7 +103,7 @@
 		}
 	}
 
-	.clear-todos {
+	.clear-completed {
 		cursor: pointer;
 		&:hover {
 			color: variables.$text-color;
