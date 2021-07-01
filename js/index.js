@@ -79,10 +79,10 @@ const clearCompleted = function () {
  */
 const renderTodoOnDOM = function (todo) {
 	updateLocalStorage();
-	updateCounter();
 
 	if (todo.deleted) {
 		document.querySelector(`[data-id='${todo.id}']`).remove();
+		updateCounter();
 		return;
 	}
 
@@ -122,7 +122,17 @@ const renderTodoOnDOM = function (todo) {
 		list.append(newItem);
 	}
 
-	// TODO add a function to add, update, render from a array when we clicked on each filter buttons
+	updateCounter();
+};
+
+const renderTodosOnDOM = function (todos) {
+	if (todos.length === 0) {
+		// Update the counter to 0
+		updateCounter();
+		return;
+	}
+
+	todos.forEach((todo) => renderTodoOnDOM(todo));
 };
 
 const updateLocalStorage = function () {
@@ -135,43 +145,64 @@ const updateLocalStorage = function () {
  * Display the number of todo items on DOM
  */
 const updateCounter = function () {
-	const count = todos.length;
+	const count = document.querySelectorAll('.todo-item').length;
 	document.querySelector('.count').innerHTML = count;
 };
 
+/**
+ * Clear all todo items on the DOM
+ */
+const clearTodoList = function () {
+	document
+		.querySelectorAll('.todo-item')
+		.forEach((todoItem) => todoItem.remove());
+};
+
 const todoFilters = function () {
-	// add click
-	document.querySelector('.todo-filters').addEventListener('click', (event) => {
-		const clickedElement = event.target;
+	// desktop filters and mobile filters
+	document.querySelectorAll('.todo-filters').forEach((todoFilter) =>
+		todoFilter.addEventListener('click', (event) => {
+			const clickedElement = event.target;
 
-		if (clickedElement.classList.contains('filter-button')) {
-			document.querySelectorAll('.filter-button').forEach((filterButton) => {
-				filterButton.classList.remove('active');
-			});
+			if (clickedElement.classList.contains('filter-button')) {
+				document.querySelectorAll('.filter-button').forEach((filterButton) => {
+					filterButton.classList.remove('active');
+				});
 
-			clickedElement.classList.add('active');
-		}
+				/**
+				 * Make the desktop and the mobile filter buttons as active
+				 */
+				function MakeFilterButtonsAsActive() {
+					// filterClassName = js-filter-all" or "js-filter-active" or js-filter-completed"
+					const filterClassName = clickedElement.classList[0];
+					document
+						.querySelectorAll(`.${filterClassName}`)
+						.forEach((filterButton) => filterButton.classList.add('active'));
+				}
+				MakeFilterButtonsAsActive();
+			}
 
-		if (clickedElement.classList.contains('js-filter-completed')) {
-			const completedTodos = todos.filter((todo) => todo.isCompleted === true);
-			console.log(completedTodos);
-			completedTodos.forEach((todo) => renderTodoOnDOM(todo));
-		}
+			if (clickedElement.classList.contains('js-filter-completed')) {
+				const completedTodos = todos.filter(
+					(todo) => todo.isCompleted === true
+				);
+				clearTodoList();
+				renderTodosOnDOM(completedTodos);
+			}
 
-		if (clickedElement.classList.contains('js-filter-active')) {
-			const activeTodos = todos.filter((todo) => todo.isCompleted !== true);
-			activeTodos.forEach((todo) => renderTodoOnDOM(todo));
-		}
+			if (clickedElement.classList.contains('js-filter-active')) {
+				const activeTodos = todos.filter((todo) => todo.isCompleted !== true);
+				clearTodoList();
+				renderTodosOnDOM(activeTodos);
+			}
 
-		if (clickedElement.classList.contains('js-filter-all')) {
-			todos.forEach((todo) => renderTodoOnDOM(todo));
-		}
-	});
-	// SI l'element clické est completed
-	// Alors display flex sur tous les élement complété
-	// Sinon si c'est active
-	// display none sur tous les élement complété
-	// sinon disply flex sur tous les éléments non visibles
+			if (clickedElement.classList.contains('js-filter-all')) {
+				// We clear the list because some todos will change the order.
+				clearTodoList();
+				renderTodosOnDOM(todos);
+			}
+		})
+	);
 };
 
 const main = function () {
@@ -223,6 +254,9 @@ const main = function () {
 				renderTodoOnDOM(todo);
 			});
 		}
+
+		// TODO Si il y a la classe active sur le bouton
+		// afficher tous les élements de todos
 	};
 
 	todoFilters();
