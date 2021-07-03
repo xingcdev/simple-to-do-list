@@ -1,16 +1,26 @@
 :root {
 	// Light theme
-	--light-background: hsl(0, 0%, 98%);
-	--disabled: hsl(236, 33%, 92%);
-	--light-grayish-blue: hsl(233, 11%, 84%);
+	--light-bg: hsl(0, 0%, 98%);
+	--light-disabled: hsl(236, 33%, 92%);
 	--light-disabled-text: hsl(236, 9%, 61%);
 	--light-text: hsl(235, 19%, 35%);
+	--light-theme: #fff;
 
 	// Dark theme
-	--check-background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-	--background: var(var(--light-background));
-	--text-color: var(--light-text);
+	--dark-bg: hsl(235, 21%, 11%);
+	--dark-disabled: hsl(237, 14%, 26%);
+	--dark-disabled-text: hsl(234, 11%, 52%);
+	--dark-text: hsl(234, 39%, 85%);
+	--dark-theme: hsl(235, 24%, 19%);
+	--light-grayish-blue: hsl(234, 39%, 85%);
+
 	--primary: hsl(220, 98%, 61%);
+	--check-bg-color: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+	--bg-color: var(--light-bg);
+	--disabled-color: var(--light-disabled);
+	--disabled-text-color: var(--light-disabled-text);
+	--text-color: var(--light-text);
+	--theme-color: var(--light-theme);
 }
 
 *,
@@ -29,7 +39,7 @@ body {
 	font-size: 18px;
 	font-family: 'Josefin Sans', sans-serif;
 	font-weight: normal;
-	background: var(--light-background);
+	background: var(--bg-color);
 	color: var(--text-color);
 }
 

@@ -10,7 +10,7 @@
 	.todo-item,
 	.todo-settings,
 	.mobile-todo-filters {
-		background: #fff;
+		background: var(--theme-color);
 		padding: 1.2rem;
 	}
 
@@ -27,14 +27,15 @@
 			width: 1.2em;
 			height: 1.2em;
 			border-radius: 30px;
-			border: 1px solid var(--disabled);
+			border: 1px solid var(--disabled-color);
 		}
 
 		.todo-input {
 			flex: 1 1 auto;
 			border: none;
-			color: var(--light-disabled-text);
-
+			color: var(--light-grayish-blue);
+			// Remove white background
+			background: transparent;
 			&:focus {
 				outline: none;
 			}
@@ -56,7 +57,7 @@
 		justify-content: space-between;
 		align-items: center;
 		font-size: 0.9rem;
-		color: var(--light-disabled-text);
+		color: var(--disabled-text-color);
 	}
 
 	.clear-completed {
@@ -78,7 +79,7 @@
 
 	width: 100%;
 	// Remove the animation of adding a 1px
-	border-bottom: 1px solid var(--disabled);
+	border-bottom: 1px solid var(--disabled-color);
 	position: relative;
 	color: var(--text-color);
 
@@ -112,7 +113,7 @@
 		width: 1.2em;
 		height: 1.2em;
 		border-radius: 30px;
-		border: 1px solid var(--disabled);
+		border: 1px solid var(--disabled-color);
 		text-align: center;
 		margin-right: 1rem;
 
@@ -141,12 +142,11 @@
 
 	&.isCompleted {
 		& {
-			background: var(--light-background);
-			color: var(--disabled);
+			color: var(--disabled-text-color);
 		}
 
 		.checkbox__input {
-			background: var(--check-background);
+			background: var(--check-bg-color);
 		}
 	}
 
@@ -155,7 +155,7 @@
 	}
 
 	.checkbox__input input:checkbox:disabled + .checkbox__checkIcon {
-		color: var(--disabled);
+		color: var(--disabled-color);
 	}
 
 	.delete-todo {
@@ -165,7 +165,7 @@
 	}
 
 	&.disabled {
-		color: var(--disabled);
+		color: var(--disabled-color);
 	}
 }
 
@@ -190,7 +190,7 @@
 
 .todo-info {
 	text-align: center;
-	color: var(--light-disabled-text);
+	color: var(--disabled-text-color);
 }
 
 .hide {

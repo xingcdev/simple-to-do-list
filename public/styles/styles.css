@@ -1,13 +1,22 @@
 :root {
-  --light-background: hsl(0, 0%, 98%);
-  --disabled: hsl(236, 33%, 92%);
-  --light-grayish-blue: hsl(233, 11%, 84%);
+  --light-bg: hsl(0, 0%, 98%);
+  --light-disabled: hsl(236, 33%, 92%);
   --light-disabled-text: hsl(236, 9%, 61%);
   --light-text: hsl(235, 19%, 35%);
-  --check-background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-  --background: var(var(--light-background));
-  --text-color: var(--light-text);
+  --light-theme: #fff;
+  --dark-bg: hsl(235, 21%, 11%);
+  --dark-disabled: hsl(237, 14%, 26%);
+  --dark-disabled-text: hsl(234, 11%, 52%);
+  --dark-text: hsl(234, 39%, 85%);
+  --dark-theme: hsl(235, 24%, 19%);
+  --light-grayish-blue: hsl(234, 39%, 85%);
   --primary: hsl(220, 98%, 61%);
+  --check-bg-color: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  --bg-color: var(--light-bg);
+  --disabled-color: var(--light-disabled);
+  --disabled-text-color: var(--light-disabled-text);
+  --text-color: var(--light-text);
+  --theme-color: var(--light-theme);
 }
 
 *,
@@ -26,7 +35,7 @@ body {
   font-size: 18px;
   font-family: "Josefin Sans", sans-serif;
   font-weight: normal;
-  background: var(--light-background);
+  background: var(--bg-color);
   color: var(--text-color);
 }
 
@@ -41,7 +50,7 @@ header {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  color: var(--light-background);
+  color: #fefefe;
 }
 header .header-content {
   display: flex;
@@ -71,7 +80,7 @@ header .header-content .title {
 .todo-list .todo-item,
 .todo-list .todo-settings,
 .todo-list .mobile-todo-filters {
-  background: #fff;
+  background: var(--theme-color);
   padding: 1.2rem;
 }
 .todo-list form {
@@ -87,12 +96,13 @@ header .header-content .title {
   width: 1.2em;
   height: 1.2em;
   border-radius: 30px;
-  border: 1px solid var(--disabled);
+  border: 1px solid var(--disabled-color);
 }
 .todo-list form .todo-input {
   flex: 1 1 auto;
   border: none;
-  color: var(--light-disabled-text);
+  color: var(--light-grayish-blue);
+  background: transparent;
 }
 .todo-list form .todo-input:focus {
   outline: none;
@@ -108,7 +118,7 @@ header .header-content .title {
   justify-content: space-between;
   align-items: center;
   font-size: 0.9rem;
-  color: var(--light-disabled-text);
+  color: var(--disabled-text-color);
 }
 .todo-list .clear-completed {
   cursor: pointer;
@@ -125,7 +135,7 @@ header .header-content .title {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border-bottom: 1px solid var(--disabled);
+  border-bottom: 1px solid var(--disabled-color);
   position: relative;
   color: var(--text-color);
   /* === Custom checkbox animation === */
@@ -151,7 +161,7 @@ header .header-content .title {
   width: 1.2em;
   height: 1.2em;
   border-radius: 30px;
-  border: 1px solid var(--disabled);
+  border: 1px solid var(--disabled-color);
   text-align: center;
   margin-right: 1rem;
   /* Hide the browser's default checkbox, keep it accessible by the keyboard */
@@ -176,18 +186,17 @@ header .header-content .title {
   transform: scale(1);
 }
 .todo-item.isCompleted {
-  background: var(--light-background);
-  color: var(--disabled);
+  color: var(--disabled-text-color);
 }
 .todo-item.isCompleted .checkbox__input {
-  background: var(--check-background);
+  background: var(--check-bg-color);
 }
 .todo-item .checkbox__input input:focus + .checkbox__checkIcon {
   box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor;
   /* Same color as the li */
 }
 .todo-item .checkbox__input input:checkbox:disabled + .checkbox__checkIcon {
-  color: var(--disabled);
+  color: var(--disabled-color);
 }
 .todo-item .delete-todo {
   cursor: pointer;
@@ -195,7 +204,7 @@ header .header-content .title {
   height: 1em;
 }
 .todo-item.disabled {
-  color: var(--disabled);
+  color: var(--disabled-color);
 }
 
 .empty-stat {
@@ -217,7 +226,7 @@ header .header-content .title {
 
 .todo-info {
   text-align: center;
-  color: var(--light-disabled-text);
+  color: var(--disabled-text-color);
 }
 
 .hide {
@@ -240,7 +249,7 @@ header .header-content .title {
 
 .mobile-todo-filters {
   border-radius: 5px;
-  color: var(--light-disabled-text);
+  color: var(--disabled-text-color);
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
