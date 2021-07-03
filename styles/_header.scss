@@ -1,5 +1,3 @@
-@use "variables";
-
 header {
 	height: 30vh;
 	padding: 3rem 1.5rem 0 1.5rem;
@@ -8,7 +6,7 @@ header {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-	color: variables.$background;
+	color: var(--light-background);
 
 	.header-content {
 		display: flex;

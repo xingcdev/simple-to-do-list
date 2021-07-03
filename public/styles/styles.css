@@ -1,3 +1,15 @@
+:root {
+  --light-background: hsl(0, 0%, 98%);
+  --disabled: hsl(236, 33%, 92%);
+  --light-grayish-blue: hsl(233, 11%, 84%);
+  --light-disabled-text: hsl(236, 9%, 61%);
+  --light-text: hsl(235, 19%, 35%);
+  --check-background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  --background: var(var(--light-background));
+  --text-color: var(--light-text);
+  --primary: hsl(220, 98%, 61%);
+}
+
 *,
 :after,
 :before {
@@ -14,8 +26,8 @@ body {
   font-size: 18px;
   font-family: "Josefin Sans", sans-serif;
   font-weight: normal;
-  background: #fafafa;
-  color: #484b6a;
+  background: var(--light-background);
+  color: var(--text-color);
 }
 
 main {
@@ -29,7 +41,7 @@ header {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  color: #fafafa;
+  color: var(--light-background);
 }
 header .header-content {
   display: flex;
@@ -75,12 +87,12 @@ header .header-content .title {
   width: 1.2em;
   height: 1.2em;
   border-radius: 30px;
-  border: 1px solid #e4e5f1;
+  border: 1px solid var(--disabled);
 }
 .todo-list form .todo-input {
   flex: 1 1 auto;
   border: none;
-  color: #9394a5;
+  color: var(--light-disabled-text);
 }
 .todo-list form .todo-input:focus {
   outline: none;
@@ -96,13 +108,13 @@ header .header-content .title {
   justify-content: space-between;
   align-items: center;
   font-size: 0.9rem;
-  color: #9394a5;
+  color: var(--light-disabled-text);
 }
 .todo-list .clear-completed {
   cursor: pointer;
 }
 .todo-list .clear-completed:hover {
-  color: #484b6a;
+  color: var(--text-color);
 }
 .todo-list:empty {
   display: none;
@@ -113,9 +125,9 @@ header .header-content .title {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border-bottom: 1px solid #e4e5f1;
+  border-bottom: 1px solid var(--disabled);
   position: relative;
-  color: #484b6a;
+  color: var(--text-color);
   /* === Custom checkbox animation === */
   /* === Custom checkbox animation === */
 }
@@ -139,7 +151,7 @@ header .header-content .title {
   width: 1.2em;
   height: 1.2em;
   border-radius: 30px;
-  border: 1px solid #e4e5f1;
+  border: 1px solid var(--disabled);
   text-align: center;
   margin-right: 1rem;
   /* Hide the browser's default checkbox, keep it accessible by the keyboard */
@@ -164,11 +176,11 @@ header .header-content .title {
   transform: scale(1);
 }
 .todo-item.isCompleted {
-  background: #fafafa;
-  color: #e4e5f1;
+  background: var(--light-background);
+  color: var(--disabled);
 }
 .todo-item.isCompleted .checkbox__input {
-  background: linear-gradient(#57ddff, #c058f3);
+  background: var(--check-background);
 }
 .todo-item .checkbox__input input:focus + .checkbox__checkIcon {
   box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor;
@@ -205,7 +217,7 @@ header .header-content .title {
 
 .todo-info {
   text-align: center;
-  color: #9394a5;
+  color: var(--light-disabled-text);
 }
 
 .hide {
@@ -225,18 +237,18 @@ header .header-content .title {
 .todo-filters > *:last-child {
   margin-right: 0;
 }
-.todo-filters > *:hover {
-  color: #484b6a;
-}
 
 .mobile-todo-filters {
   border-radius: 5px;
-  color: #9394a5;
+  color: var(--light-disabled-text);
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .desktop-todo-filters {
   display: none;
+}
+.desktop-todo-filters > *:hover {
+  color: var(--text-color);
 }
 
 @media screen and (min-width: 800px) {
@@ -250,11 +262,7 @@ header .header-content .title {
 }
 .mobile-todo-filters > *.active,
 .desktop-todo-filters > *.active {
-  color: #3a7bfd;
-}
-
-:root {
-  --disabled: #959495;
+  color: var(--primary);
 }
 
 .attribution {

@@ -1,4 +1,17 @@
-@use 'variables';
+:root {
+	// Light theme
+	--light-background: hsl(0, 0%, 98%);
+	--disabled: hsl(236, 33%, 92%);
+	--light-grayish-blue: hsl(233, 11%, 84%);
+	--light-disabled-text: hsl(236, 9%, 61%);
+	--light-text: hsl(235, 19%, 35%);
+
+	// Dark theme
+	--check-background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+	--background: var(var(--light-background));
+	--text-color: var(--light-text);
+	--primary: hsl(220, 98%, 61%);
+}
 
 *,
 :after,
@@ -16,8 +29,8 @@ body {
 	font-size: 18px;
 	font-family: 'Josefin Sans', sans-serif;
 	font-weight: normal;
-	background: variables.$background;
-	color: variables.$text-color;
+	background: var(--light-background);
+	color: var(--text-color);
 }
 
 main {

@@ -1,5 +1,3 @@
-@use "variables";
-
 .todo-list {
 	position: relative;
 	max-width: 500px;
@@ -29,13 +27,13 @@
 			width: 1.2em;
 			height: 1.2em;
 			border-radius: 30px;
-			border: 1px solid variables.$very-light-grayish-blue;
+			border: 1px solid var(--disabled);
 		}
 
 		.todo-input {
 			flex: 1 1 auto;
 			border: none;
-			color: variables.$dark-grayish-blue;
+			color: var(--light-disabled-text);
 
 			&:focus {
 				outline: none;
@@ -58,13 +56,13 @@
 		justify-content: space-between;
 		align-items: center;
 		font-size: 0.9rem;
-		color: variables.$dark-grayish-blue;
+		color: var(--light-disabled-text);
 	}
 
 	.clear-completed {
 		cursor: pointer;
 		&:hover {
-			color: variables.$text-color;
+			color: var(--text-color);
 		}
 	}
 
@@ -80,9 +78,9 @@
 
 	width: 100%;
 	// Remove the animation of adding a 1px
-	border-bottom: 1px solid variables.$very-light-grayish-blue;
+	border-bottom: 1px solid var(--disabled);
 	position: relative;
-	color: variables.$text-color;
+	color: var(--text-color);
 
 	.todo-text {
 		display: flex;
@@ -114,7 +112,7 @@
 		width: 1.2em;
 		height: 1.2em;
 		border-radius: 30px;
-		border: 1px solid variables.$very-light-grayish-blue;
+		border: 1px solid var(--disabled);
 		text-align: center;
 		margin-right: 1rem;
 
@@ -143,12 +141,12 @@
 
 	&.isCompleted {
 		& {
-			background: variables.$background;
-			color: variables.$very-light-grayish-blue;
+			background: var(--light-background);
+			color: var(--disabled);
 		}
 
 		.checkbox__input {
-			background: variables.$check-background;
+			background: var(--check-background);
 		}
 	}
 
@@ -192,7 +190,7 @@
 
 .todo-info {
 	text-align: center;
-	color: variables.$dark-grayish-blue;
+	color: var(--light-disabled-text);
 }
 
 .hide {
