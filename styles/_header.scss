@@ -2,7 +2,7 @@ header {
 	height: 30vh;
 	padding: 3rem 1.5rem 0 1.5rem;
 	// Relative path to public/styles/
-	background-image: url(../../images/bg-mobile-light.jpg);
+	background-image: var(--mobile-banner);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -24,6 +24,6 @@ header {
 	header {
 		// Reset the mobile background image
 		background-image: none;
-		background-image: url(../../images/bg-desktop-light.jpg);
+		background-image: var(--desktop-banner);
 	}
 }
