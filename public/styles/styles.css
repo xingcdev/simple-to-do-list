@@ -25,6 +25,16 @@
   --desktop-banner: var(--light-desktop-banner);
 }
 
+:root.dark-mode {
+  --bg-color: var(--dark-bg);
+  --disabled-color: var(--dark-disabled);
+  --disabled-text-color: var(--dark-disabled-text);
+  --text-color: var(--dark-text);
+  --theme-color: var(--dark-theme);
+  --mobile-banner: var(--dark-mobile-banner);
+  --desktop-banner: var(--dark-desktop-banner);
+}
+
 *,
 :after,
 :before {
@@ -281,7 +291,7 @@ header .header-content .title {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-light-mode=true]) {
     --bg-color: var(--dark-bg);
     --disabled-color: var(--dark-disabled);
     --disabled-text-color: var(--dark-disabled-text);
@@ -289,6 +299,17 @@ header .header-content .title {
     --theme-color: var(--dark-theme);
     --mobile-banner: var(--dark-mobile-banner);
     --desktop-banner: var(--dark-desktop-banner);
+  }
+
+  /* Override dark mode with light mode if the user decides to swap */
+  :root.light-mode {
+    --bg-color: var(--light-bg);
+    --disabled-color: var(--light-disabled);
+    --disabled-text-color: var(--light-disabled-text);
+    --text-color: var(--light-text);
+    --theme-color: var(--light-theme);
+    --mobile-banner: var(--light-mobile-banner);
+    --desktop-banner: var(--light-desktop-banner);
   }
 }
 .attribution {

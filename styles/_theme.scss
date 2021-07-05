@@ -1,11 +1,10 @@
-@media (prefers-color-scheme: dark) {
-	:root {
+:root[data-theme='system'] {
+	@media (prefers-color-scheme: dark) {
 		--bg-color: var(--dark-bg);
 		--disabled-color: var(--dark-disabled);
 		--disabled-text-color: var(--dark-disabled-text);
 		--text-color: var(--dark-text);
 		--theme-color: var(--dark-theme);
-
 		--mobile-banner: var(--dark-mobile-banner);
 		--desktop-banner: var(--dark-desktop-banner);
 	}

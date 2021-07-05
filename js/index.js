@@ -205,6 +205,30 @@ const todoFilters = function () {
 	);
 };
 
+const restoreTodos = function () {
+	const todosRef = window.localStorage.getItem('todosRef');
+	if (todosRef) {
+		todos = JSON.parse(todosRef);
+		todos.forEach((todo) => {
+			renderTodoOnDOM(todo);
+		});
+	}
+};
+
+const toggleDarkMode = function () {
+	document.querySelector('html').setAttribute('data-theme', 'dark');
+};
+
+const restoreDarkMode = function () {
+	const currentTheme = window.localStorage.getItem('theme');
+
+	if (currentTheme === 'dark') {
+		document.querySelector('html').classList.add('dark-mode');
+		// } else if (currentTheme === 'light') {
+		// 	document.querySelector('html').classList.toggle('light-mode');
+	}
+};
+
 const main = function () {
 	document.querySelector('#form').addEventListener('submit', (event) => {
 		// Prevent page refresh on form submission
@@ -245,19 +269,14 @@ const main = function () {
 		}
 	});
 
-	document.addEventListener('DOMContentLoaded', () => restoreTodos());
-	const restoreTodos = function () {
-		const todosRef = window.localStorage.getItem('todosRef');
-		if (todosRef) {
-			todos = JSON.parse(todosRef);
-			todos.forEach((todo) => {
-				renderTodoOnDOM(todo);
-			});
-		}
+	document.addEventListener('DOMContentLoaded', () => {
+		restoreTodos();
+		restoreDarkMode();
+	});
 
-		// TODO Si il y a la classe active sur le bouton
-		// afficher tous les élements de todos
-	};
+	document
+		.querySelector('.toggle-dark-mode')
+		.addEventListener('click', toggleDarkMode);
 
 	todoFilters();
 };
