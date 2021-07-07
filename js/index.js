@@ -39,6 +39,7 @@ const deleteTodo = function (id) {
 	todos = todos.filter((todo) => todo.id !== Number(id));
 
 	renderTodoOnDOM(todoToDelete);
+	light;
 };
 
 /**
@@ -215,18 +216,51 @@ const restoreTodos = function () {
 	}
 };
 
-const toggleDarkMode = function () {
-	document.querySelector('html').setAttribute('data-theme', 'dark');
+const switchThemes = function () {
+	const themePickers = document.querySelectorAll('.theme-picker');
+	themePickers.forEach((themePicker) => {
+		if (themePicker.checked) {
+			const themeId = themePicker.dataset.themeId;
+			changeTheme(themeId);
+		}
+	});
+
+	const activeTheme = document.documentElement.getAttribute('data-theme');
+
+	// Clear stored theme because "auto" is the default theme
+	if (activeTheme === 'auto') {
+		window.localStorage.removeItem('theme');
+		return;
+	}
+
+	window.localStorage.setItem('theme', activeTheme);
 };
 
-const restoreDarkMode = function () {
+const changeTheme = function (id) {
+	document.documentElement.setAttribute('data-theme', id);
+};
+
+const updateThemeSwitcher = function () {
+	const activeTheme = document.documentElement.getAttribute('data-theme');
+
+	if (activeTheme === 'dark') {
+		document.querySelector('input#dark-mode').checked = true;
+	} else if (activeTheme === 'light') {
+		document.querySelector('input#light-mode').checked = true;
+	}
+	// No need to test the "auto" theme because its default theme.
+};
+
+const restoreTheme = function () {
 	const currentTheme = window.localStorage.getItem('theme');
 
 	if (currentTheme === 'dark') {
-		document.querySelector('html').classList.add('dark-mode');
-		// } else if (currentTheme === 'light') {
-		// 	document.querySelector('html').classList.toggle('light-mode');
+		document.documentElement.setAttribute('data-theme', 'dark');
+	} else if (currentTheme === 'light') {
+		document.documentElement.setAttribute('data-theme', 'light');
 	}
+
+	updateThemeSwitcher();
 };
 
 const main = function () {
@@ -271,12 +305,12 @@ const main = function () {
 
 	document.addEventListener('DOMContentLoaded', () => {
 		restoreTodos();
-		restoreDarkMode();
+		restoreTheme();
 	});
 
 	document
-		.querySelector('.toggle-dark-mode')
-		.addEventListener('click', toggleDarkMode);
+		.querySelector('.theme-switcher')
+		.addEventListener('click', switchThemes);
 
 	todoFilters();
 };

@@ -1,8 +1,8 @@
 @use 'base';
+@use 'theme';
 @use 'header';
 @use 'to-do-list';
 @use 'to-do-filters';
-@use 'theme';
 
 .attribution {
 	font-size: 11px;

@@ -1,4 +1,4 @@
-:root[data-theme='system'] {
+:root[data-theme='auto'] {
 	@media (prefers-color-scheme: dark) {
 		--bg-color: var(--dark-bg);
 		--disabled-color: var(--dark-disabled);
@@ -7,5 +7,71 @@
 		--theme-color: var(--dark-theme);
 		--mobile-banner: var(--dark-mobile-banner);
 		--desktop-banner: var(--dark-desktop-banner);
+	}
+}
+
+:root[data-theme='dark'] {
+	--bg-color: var(--dark-bg);
+	--disabled-color: var(--dark-disabled);
+	--disabled-text-color: var(--dark-disabled-text);
+	--text-color: var(--dark-text);
+	--theme-color: var(--dark-theme);
+	--mobile-banner: var(--dark-mobile-banner);
+	--desktop-banner: var(--dark-desktop-banner);
+}
+
+.theme-switcher {
+	flex: 0 0 23%;
+	position: relative;
+	background: var(--primary-color);
+	border-radius: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-right: 2rem;
+
+	.indicator {
+		display: inline-block;
+		position: absolute;
+		// Default position on "auto" theme
+		left: 38%;
+		width: 25px;
+		height: 25px;
+		border-radius: 30px;
+		background: #fefefe;
+		box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.4);
+		transition: all 0.4s ease-in;
+	}
+
+	input#light-mode:checked ~ .indicator {
+		left: 2%;
+	}
+
+	input#dark-mode:checked ~ .indicator {
+		left: 68%;
+	}
+
+	input {
+		// Hide the radio button but keep the keyboard accessibility
+		opacity: 0;
+		z-index: 100;
+		width: 20px;
+		height: 20px;
+	}
+
+	label {
+		position: absolute;
+		&[for='light-mode'] {
+			left: -40%;
+		}
+
+		&[for='auto-mode'] {
+			top: -22px;
+			left: 33%;
+		}
+
+		&[for='dark-mode'] {
+			right: -40%;
+		}
 	}
 }

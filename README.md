@@ -116,6 +116,10 @@ Use this section to outline areas that you want to continue focusing on in futur
 - [How to build a Todo List App with JavaScript - Freshman](https://freshman.tech/todo-list/) - This helped me to build a to-do list app using JavaScript. I really liked this tutorial because the author explains why he is using that code.
 - [Pure CSS Custom Checkbox Style - Modern CSS Solutions](https://moderncss.dev/pure-css-custom-checkbox-style/) - This is an amazing article which helped me customizing the HTML checkbox. I like this tutorial because it was build with modern CSS Grid.
 
+https://codyhouse.co/blog/post/how-to-accessible-radio-switch-in-css
+
+https://codepen.io/markcaron/pen/qXYJVm
+
 ## Author
 
 - Website - [Add your name here](https://www.your-site.com)

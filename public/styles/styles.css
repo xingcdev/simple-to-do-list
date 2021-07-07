@@ -14,7 +14,7 @@
   --light-grayish-blue: hsl(234, 39%, 85%);
   --dark-mobile-banner: url(../../images/bg-mobile-dark.jpg);
   --dark-desktop-banner: url(../../images/bg-desktop-dark.jpg);
-  --primary: hsl(220, 98%, 61%);
+  --primary-color: hsl(220, 98%, 61%);
   --check-bg-color: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   --bg-color: var(--light-bg);
   --disabled-color: var(--light-disabled);
@@ -23,16 +23,6 @@
   --theme-color: var(--light-theme);
   --mobile-banner: var(--light-mobile-banner);
   --desktop-banner: var(--light-desktop-banner);
-}
-
-:root.dark-mode {
-  --bg-color: var(--dark-bg);
-  --disabled-color: var(--dark-disabled);
-  --disabled-text-color: var(--dark-disabled-text);
-  --text-color: var(--dark-text);
-  --theme-color: var(--dark-theme);
-  --mobile-banner: var(--dark-mobile-banner);
-  --desktop-banner: var(--dark-desktop-banner);
 }
 
 *,
@@ -57,6 +47,75 @@ body {
 
 main {
   margin-bottom: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme=auto] {
+    --bg-color: var(--dark-bg);
+    --disabled-color: var(--dark-disabled);
+    --disabled-text-color: var(--dark-disabled-text);
+    --text-color: var(--dark-text);
+    --theme-color: var(--dark-theme);
+    --mobile-banner: var(--dark-mobile-banner);
+    --desktop-banner: var(--dark-desktop-banner);
+  }
+}
+
+:root[data-theme=dark] {
+  --bg-color: var(--dark-bg);
+  --disabled-color: var(--dark-disabled);
+  --disabled-text-color: var(--dark-disabled-text);
+  --text-color: var(--dark-text);
+  --theme-color: var(--dark-theme);
+  --mobile-banner: var(--dark-mobile-banner);
+  --desktop-banner: var(--dark-desktop-banner);
+}
+
+.theme-switcher {
+  flex: 0 0 23%;
+  position: relative;
+  background: var(--primary-color);
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 2rem;
+}
+.theme-switcher .indicator {
+  display: inline-block;
+  position: absolute;
+  left: 38%;
+  width: 25px;
+  height: 25px;
+  border-radius: 30px;
+  background: #fefefe;
+  box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease-in;
+}
+.theme-switcher input#light-mode:checked ~ .indicator {
+  left: 2%;
+}
+.theme-switcher input#dark-mode:checked ~ .indicator {
+  left: 68%;
+}
+.theme-switcher input {
+  opacity: 0;
+  z-index: 100;
+  width: 20px;
+  height: 20px;
+}
+.theme-switcher label {
+  position: absolute;
+}
+.theme-switcher label[for=light-mode] {
+  left: -40%;
+}
+.theme-switcher label[for=auto-mode] {
+  top: -22px;
+  left: 33%;
+}
+.theme-switcher label[for=dark-mode] {
+  right: -40%;
 }
 
 header {
@@ -287,31 +346,9 @@ header .header-content .title {
 }
 .mobile-todo-filters > *.active,
 .desktop-todo-filters > *.active {
-  color: var(--primary);
+  color: var(--primary-color);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-light-mode=true]) {
-    --bg-color: var(--dark-bg);
-    --disabled-color: var(--dark-disabled);
-    --disabled-text-color: var(--dark-disabled-text);
-    --text-color: var(--dark-text);
-    --theme-color: var(--dark-theme);
-    --mobile-banner: var(--dark-mobile-banner);
-    --desktop-banner: var(--dark-desktop-banner);
-  }
-
-  /* Override dark mode with light mode if the user decides to swap */
-  :root.light-mode {
-    --bg-color: var(--light-bg);
-    --disabled-color: var(--light-disabled);
-    --disabled-text-color: var(--light-disabled-text);
-    --text-color: var(--light-text);
-    --theme-color: var(--light-theme);
-    --mobile-banner: var(--light-mobile-banner);
-    --desktop-banner: var(--light-desktop-banner);
-  }
-}
 .attribution {
   font-size: 11px;
   text-align: center;

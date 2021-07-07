@@ -43,6 +43,6 @@
 .mobile-todo-filters,
 .desktop-todo-filters {
 	& > *.active {
-		color: var(--primary);
+		color: var(--primary-color);
 	}
 }
