@@ -85,25 +85,20 @@ the child div's overflow can give the impression that the border-radius isn't wo
 }
 ```
 
-Source : https://stackoverflow.com/a/53964887
+See: https://stackoverflow.com/a/53964887
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+#### Theming (dark mode)
 
-```css
-.proud-of-this-css {
-	color: papayawhip;
-}
-```
+It's good practice to make 3 modes for the theming.
 
-```js
-const proudOfThisFunc = () => {
-	console.log('🎉');
-};
-```
+- Light mode
+- Dark mode
+- System - the theme is set by the system.
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+The `system` choice let users to say: I prefer my OS to be light but to switch to dark mode at night.
+The users can switch the theme automatically using the OS setting.
+
+see: [Your dark mode toggle is broken - Kilian Valkhof](https://kilianvalkhof.com/2020/design/your-dark-mode-toggle-is-broken/)
 
 ### Continued development
 
@@ -137,3 +132,7 @@ This is where you can give a hat tip to anyone who helped you out on this projec
 ## References
 
 [To-do list design by Frontend mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW)
+
+```
+
+```
