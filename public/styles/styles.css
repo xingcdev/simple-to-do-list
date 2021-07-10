@@ -349,6 +349,11 @@ header .header-content .title {
   color: var(--primary-color);
 }
 
+.todo-item.isDragging {
+  background: rgba(58, 123, 253, 0.2);
+  border: 3px solid var(--primary-color);
+}
+
 .attribution {
   font-size: 11px;
   text-align: center;
