@@ -1,4 +1,4 @@
-import initiate from './dragAndDrop.js';
+import { onDragStart, onDragEnd, allowDrop, onDrop } from './dragAndDrop.js';
 
 // Array used to persist the application state
 let todos = [];
@@ -95,7 +95,12 @@ const renderTodoOnDOM = function (todo) {
 	const isCompleted = todo.isCompleted ? 'isCompleted' : '';
 	newItem.setAttribute('class', `todo-item ${isCompleted}`);
 	newItem.setAttribute('data-id', todo.id);
+
 	newItem.setAttribute('draggable', true);
+	newItem.addEventListener('dragstart', onDragStart);
+	newItem.addEventListener('dragend', onDragEnd);
+	newItem.addEventListener('dragover', allowDrop);
+	newItem.addEventListener('drop', onDrop);
 
 	// We need to update the checkbox to be checked or not, otherwise when replacing the existing item with the new one, the checkbox on the DOM will always be empty
 	let checkboxInput;
@@ -316,8 +321,6 @@ const main = function () {
 		.addEventListener('click', switchThemes);
 
 	todoFilters();
-
-	initiate();
 };
 
 main();

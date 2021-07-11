@@ -1,12 +1,4 @@
-const initiate = function () {
-	const dropZone = document.querySelector('.todo-items');
-	dropZone.addEventListener('dragstart', onDragStart);
-
-	dropZone.addEventListener('dragover', onDragOver);
-	dropZone.addEventListener('drop', onDrop);
-};
-
-const onDragStart = function (event) {
+export const onDragStart = function (event) {
 	const currentDragEvent = event;
 
 	// Identify the current dragged element by adding a id
@@ -16,16 +8,20 @@ const onDragStart = function (event) {
 	);
 
 	const currentDraggedElement = event.target;
-	console.log(currentDraggedElement);
 	currentDraggedElement.classList.add('isDragging');
 };
 
-const onDragOver = function (event) {
-	// Assure that we can drop the element on the div.
+export const onDragEnd = function (event) {
+	const currentDraggedElement = event.target;
+	currentDraggedElement.classList.remove('isDragging');
+};
+
+export const allowDrop = function (event) {
+	// Make the drop target(i.e div) droppable
 	event.preventDefault();
 };
 
-const onDrop = function (event) {
+export const onDrop = function (event) {
 	// Avoid the page refresh
 	event.preventDefault();
 
@@ -34,9 +30,8 @@ const onDrop = function (event) {
 		`[data-id='${draggedElementId}']`
 	);
 
-	const dropZone = event.target;
-	console.log(event.target);
+	const dropZone = event.currentTarget;
 	dropZone.appendChild(draggedElement);
-};
 
-export default initiate;
+	event.dataTransfer.clearData();
+};
