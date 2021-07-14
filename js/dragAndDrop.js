@@ -1,4 +1,4 @@
-import { todos } from './index.js';
+import { todos, renderTodos } from './index.js';
 
 let draggedIndex, underDraggedIndex;
 
@@ -14,7 +14,7 @@ const findTodoItemInArray = function (array, id) {
 
 const initDropZone = function () {
 	const dropZone = document.querySelector('.todo-items');
-	dropZone.addEventListener('dragover', allowDrop);
+	dropZone.addEventListener('dragover', onDragOver);
 	dropZone.addEventListener('drop', onDrop);
 };
 
@@ -36,7 +36,7 @@ export const onDragEnd = function (event) {
 	currentDraggedElement.classList.remove('isDragging');
 };
 
-export const allowDrop = function (event) {
+export const onDragOver = function (event) {
 	// Make the drop target(i.e div) droppable
 	event.preventDefault();
 
@@ -66,16 +66,17 @@ export const onDrop = function (event) {
 	}
 	findIndexOfDragged();
 
-	// TODO replace the underDragged with Dragged
+	// remove the draggedTodo from the todos array
+	todos.splice(draggedIndex, 1);
+	// Replace the underDragged with Dragged
+	const draggedTodo = todos[draggedIndex];
+	todos.splice(underDraggedIndex, 0, draggedTodo);
+
+	console.log(todos);
 	// TODO render the todos array
+	renderTodos(todos);
 
-	const draggedElement = document.querySelector(
-		`[data-id='${draggedElementId}']`
-	);
-	// currentTarget is the element to which the event handler has been attached
-	const dropZone = event.currentTarget;
-
-	event.dataTransfer.clearData();
+	// event.dataTransfer.clearData();
 };
 
 export default initDropZone;

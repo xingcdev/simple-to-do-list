@@ -77,7 +77,7 @@ const clearCompleted = function () {
 };
 
 /**
- * Add or update a todo item on the DOM
+ * Add todo item on the DOM
  * @param {object} todo A todo item
  */
 const renderTodoOnDOM = function (todo) {
@@ -121,7 +121,6 @@ const renderTodoOnDOM = function (todo) {
 		<span class="label">${todo.text}</span>
 	</label>
 	<svg class="delete-todo js-delete-todo" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>`;
-
 	const existingItem = document.querySelector(`[data-id='${todo.id}']`);
 	if (existingItem) {
 		existingItem.replaceWith(newItem);
@@ -132,7 +131,13 @@ const renderTodoOnDOM = function (todo) {
 	updateCounter();
 };
 
-const renderTodosOnDOM = function (todos) {
+// TODO
+/**
+ * Update the existing HTML todo elements (Mark as completed)
+ */
+const updateTodo = function () {};
+
+export const renderTodos = function (todos) {
 	if (todos.length === 0) {
 		// Update the counter to 0
 		updateCounter();
@@ -194,19 +199,19 @@ const todoFilters = function () {
 					(todo) => todo.isCompleted === true
 				);
 				clearTodoList();
-				renderTodosOnDOM(completedTodos);
+				renderTodos(completedTodos);
 			}
 
 			if (clickedElement.classList.contains('js-filter-active')) {
 				const activeTodos = todos.filter((todo) => todo.isCompleted !== true);
 				clearTodoList();
-				renderTodosOnDOM(activeTodos);
+				renderTodos(activeTodos);
 			}
 
 			if (clickedElement.classList.contains('js-filter-all')) {
 				// We clear the list because some todos will change the order.
 				clearTodoList();
-				renderTodosOnDOM(todos);
+				renderTodos(todos);
 			}
 		})
 	);
