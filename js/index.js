@@ -1,5 +1,6 @@
 import initDropZone, { onDragStart, onDragEnd } from './dragAndDrop.js';
 
+// TODO add currentList
 // Array used to persist the application state
 export let todos = [];
 
@@ -14,7 +15,7 @@ const addTodo = function (text) {
 		isCompleted: false,
 	};
 	todos.push(todo);
-	renderTodoOnDOM(todo);
+	updateTodoOnDOM(todo);
 };
 
 /**
@@ -40,7 +41,7 @@ const deleteTodo = function (id) {
 	// Array that contains the todos different of the 'id' param
 	todos = todos.filter((todo) => todo.id !== Number(id));
 
-	renderTodoOnDOM(todoToDelete);
+	updateTodoOnDOM(todoToDelete);
 	light;
 };
 
@@ -59,7 +60,7 @@ const toggleCompleted = function (id) {
 	const thisTodo = todos[index];
 	thisTodo.isCompleted = !thisTodo.isCompleted;
 
-	renderTodoOnDOM(thisTodo);
+	updateTodoOnDOM(thisTodo);
 };
 
 /**
@@ -76,21 +77,7 @@ const clearCompleted = function () {
 	});
 };
 
-/**
- * Add todo item on the DOM
- * @param {object} todo A todo item
- */
-const renderTodoOnDOM = function (todo) {
-	updateLocalStorage();
-
-	if (todo.deleted) {
-		document.querySelector(`[data-id='${todo.id}']`).remove();
-		updateCounter();
-		return;
-	}
-
-	// Add a todo as li item on the DOM
-	const list = document.querySelector('.todo-list .todo-items');
+const createTodoOnDOM = function (todo) {
 	const newItem = document.createElement('li');
 	const isCompleted = todo.isCompleted ? 'isCompleted' : '';
 	newItem.setAttribute('class', `todo-item ${isCompleted}`);
@@ -121,30 +108,57 @@ const renderTodoOnDOM = function (todo) {
 		<span class="label">${todo.text}</span>
 	</label>
 	<svg class="delete-todo js-delete-todo" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>`;
+
+	return newItem;
+};
+
+/**
+ * Update the existing HTML todo elements (Mark as completed) or add it
+ * @param {object} todo A todo item
+ */
+const updateTodoOnDOM = function (todo) {
+	updateLocalStorage();
+
+	if (todo.deleted) {
+		document.querySelector(`[data-id='${todo.id}']`).remove();
+		updateCounter();
+		return;
+	}
+
+	const list = document.querySelector('.todo-items');
+	const newElement = createTodoOnDOM(todo);
+
 	const existingItem = document.querySelector(`[data-id='${todo.id}']`);
 	if (existingItem) {
-		existingItem.replaceWith(newItem);
+		existingItem.replaceWith(newElement);
 	} else {
-		list.append(newItem);
+		list.append(newElement);
 	}
 
 	updateCounter();
 };
 
-// TODO
 /**
- * Update the existing HTML todo elements (Mark as completed)
+ * Render a list of array on the DOM. The function will change the order of todo items
+ * @param {array} todos
+ * @returns
  */
-const updateTodo = function () {};
-
-export const renderTodos = function (todos) {
+export const renderTodoList = function (todos) {
 	if (todos.length === 0) {
 		// Update the counter to 0
 		updateCounter();
 		return;
 	}
 
-	todos.forEach((todo) => renderTodoOnDOM(todo));
+	const list = document.querySelector('.todo-items');
+	list.innerText = '';
+
+	todos.forEach((todo) => {
+		const todoElement = createTodoOnDOM(todo);
+		list.append(todoElement);
+	});
+
+	updateLocalStorage();
 };
 
 const updateLocalStorage = function () {
@@ -199,19 +213,19 @@ const todoFilters = function () {
 					(todo) => todo.isCompleted === true
 				);
 				clearTodoList();
-				renderTodos(completedTodos);
+				renderTodoList(completedTodos);
 			}
 
 			if (clickedElement.classList.contains('js-filter-active')) {
 				const activeTodos = todos.filter((todo) => todo.isCompleted !== true);
 				clearTodoList();
-				renderTodos(activeTodos);
+				renderTodoList(activeTodos);
 			}
 
 			if (clickedElement.classList.contains('js-filter-all')) {
 				// We clear the list because some todos will change the order.
 				clearTodoList();
-				renderTodos(todos);
+				renderTodoList(todos);
 			}
 		})
 	);
@@ -222,7 +236,7 @@ const restoreTodos = function () {
 	if (todosRef) {
 		todos = JSON.parse(todosRef);
 		todos.forEach((todo) => {
-			renderTodoOnDOM(todo);
+			updateTodoOnDOM(todo);
 		});
 	}
 };

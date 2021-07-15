@@ -1,4 +1,4 @@
-import { todos, renderTodos } from './index.js';
+import { todos, renderTodoList } from './index.js';
 
 let draggedIndex, underDraggedIndex;
 
@@ -47,7 +47,6 @@ export const onDragOver = function (event) {
 		if (!underDraggedEl.classList.contains('isDragging')) {
 			const todoItem = findTodoItemInArray(todos, underDraggedId);
 			underDraggedIndex = todos.indexOf(todoItem);
-			console.log(underDraggedIndex);
 		}
 	}
 	findIndexOfUnderDragged();
@@ -62,21 +61,24 @@ export const onDrop = function (event) {
 		const todoItem = findTodoItemInArray(todos, draggedElementId);
 		// On recupère l'index de l'element isDragging
 		draggedIndex = todos.indexOf(todoItem);
-		console.log(draggedIndex);
 	}
 	findIndexOfDragged();
 
-	// remove the draggedTodo from the todos array
-	todos.splice(draggedIndex, 1);
-	// Replace the underDragged with Dragged
 	const draggedTodo = todos[draggedIndex];
-	todos.splice(underDraggedIndex, 0, draggedTodo);
+	removeElementAtIndex(draggedIndex, todos);
+	addElementAtIndex(underDraggedIndex, draggedTodo, todos);
 
-	console.log(todos);
-	// TODO render the todos array
-	renderTodos(todos);
+	renderTodoList(todos);
 
-	// event.dataTransfer.clearData();
+	event.dataTransfer.clearData();
+};
+
+const removeElementAtIndex = function (index, array) {
+	array.splice(index, 1);
+};
+
+const addElementAtIndex = function (index, elementToAdd, array) {
+	array.splice(index, 0, elementToAdd);
 };
 
 export default initDropZone;
