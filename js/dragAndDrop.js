@@ -27,6 +27,8 @@ const initDropZone = function () {
 export const onDragStart = function (event) {
 	const currentDragEvent = event;
 
+	// Start by clearing existing data
+	event.dataTransfer.clearData();
 	// Identify the current dragged element by adding a id
 	currentDragEvent.dataTransfer.setData(
 		'text/plain',
@@ -96,7 +98,6 @@ export const onDrop = function (event) {
 		}
 	};
 	render();
-	event.dataTransfer.clearData();
 };
 
 const removeElementAtIndex = function (index, array) {
