@@ -1,4 +1,10 @@
-import { todos, renderTodoList } from './index.js';
+import {
+	todos,
+	currentList,
+	renderTodoList,
+	generateActiveTodos,
+	generateCompletedTodos,
+} from './index.js';
 
 let draggedIndex, underDraggedIndex;
 
@@ -64,12 +70,32 @@ export const onDrop = function (event) {
 	}
 	findIndexOfDragged();
 
-	const draggedTodo = todos[draggedIndex];
-	removeElementAtIndex(draggedIndex, todos);
-	addElementAtIndex(underDraggedIndex, draggedTodo, todos);
+	const moveDragged = function () {
+		const draggedTodo = todos[draggedIndex];
+		removeElementAtIndex(draggedIndex, todos);
+		addElementAtIndex(underDraggedIndex, draggedTodo, todos);
+	};
+	moveDragged();
 
-	renderTodoList(todos);
-
+	const render = function () {
+		switch (currentList) {
+			case 'completed': {
+				const completedTodos = generateCompletedTodos();
+				renderTodoList(completedTodos);
+				break;
+			}
+			case 'active': {
+				const activeTodos = generateActiveTodos();
+				renderTodoList(activeTodos);
+				break;
+			}
+			default: {
+				renderTodoList(todos);
+				break;
+			}
+		}
+	};
+	render();
 	event.dataTransfer.clearData();
 };
 

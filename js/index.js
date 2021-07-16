@@ -3,6 +3,16 @@ import initDropZone, { onDragStart, onDragEnd } from './dragAndDrop.js';
 // TODO add currentList
 // Array used to persist the application state
 export let todos = [];
+// Identify the current list is useful to re render the all/active/completed todos array when we are dragging and dropping.
+export let currentList = 'all';
+
+export const generateActiveTodos = function () {
+	return todos.filter((todo) => todo.isCompleted !== true);
+};
+
+export const generateCompletedTodos = function () {
+	return todos.filter((todo) => todo.isCompleted === true);
+};
 
 /**
  * Add a todo item into the DOM todo list
@@ -208,20 +218,21 @@ const todoFilters = function () {
 			}
 
 			if (clickedElement.classList.contains('js-filter-completed')) {
-				const completedTodos = todos.filter(
-					(todo) => todo.isCompleted === true
-				);
+				currentList = 'completed';
+				const completedTodos = generateCompletedTodos();
 				clearTodoList();
 				renderTodoList(completedTodos);
 			}
 
 			if (clickedElement.classList.contains('js-filter-active')) {
-				const activeTodos = todos.filter((todo) => todo.isCompleted !== true);
+				currentList = 'active';
+				const activeTodos = generateActiveTodos();
 				clearTodoList();
 				renderTodoList(activeTodos);
 			}
 
 			if (clickedElement.classList.contains('js-filter-all')) {
+				currentList = 'all';
 				// We clear the list because some todos will change the order.
 				clearTodoList();
 				renderTodoList(todos);
