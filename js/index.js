@@ -42,7 +42,6 @@ const deleteTodo = function (id) {
 	todos = todos.filter((todo) => todo.id !== Number(id));
 
 	updateTodoOnDOM(todoToDelete);
-	light;
 };
 
 /**
@@ -198,13 +197,13 @@ const todoFilters = function () {
 				/**
 				 * Make the desktop and the mobile filter buttons as active
 				 */
-				function MakeFilterButtonsAsActive() {
+				const MakeFilterButtonsAsActive = function () {
 					// filterClassName = js-filter-all" or "js-filter-active" or js-filter-completed"
 					const filterClassName = clickedElement.classList[0];
 					document
 						.querySelectorAll(`.${filterClassName}`)
 						.forEach((filterButton) => filterButton.classList.add('active'));
-				}
+				};
 				MakeFilterButtonsAsActive();
 			}
 
