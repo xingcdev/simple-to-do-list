@@ -36,18 +36,11 @@ Users should be able to:
 
 ![](./screenshot.jpg)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
+TODO
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
+### Link
 
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
-
-### Links
-
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Simple Todo List](https://xingcdev.github.io/simple-to-do-list/)
 
 ## My process
 
@@ -63,7 +56,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 #### Border radius is not working
 
-the child div's overflow can give the impression that the border-radius isn't working.
+The child div's overflow can give the impression that the border-radius isn't working.
 
 ```css
 .todo-body {
@@ -72,7 +65,7 @@ the child div's overflow can give the impression that the border-radius isn't wo
 }
 ```
 
-See: [css - border-radius not working - Stack Overflow](https://stackoverflow.com/a/53964887)
+Source: [css - border-radius not working - Stack Overflow](https://stackoverflow.com/a/53964887)
 
 #### Theming (dark mode)
 
@@ -136,7 +129,7 @@ const updateLocalStorage = function () {
 };
 ```
 
-When the page is loaded, the function below get todos from the localStorage and render them on the page:
+When the page is loaded, the function below gets todos from the localStorage and will render them on the page:
 
 ```javascript
 const restoreTodos = function () {
@@ -154,19 +147,122 @@ const restoreTodos = function () {
 
 I created drag and drop feature using [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API).
 
-The 2 articles below helped me to make sortable to-do list:
+The 2 articles below helped me to make a sortable to-do list:
 
 [How To Create Drag and Drop Elements with Vanilla JavaScript and HTML - DigitalOcean](https://www.digitalocean.com/community/tutorials/js-drag-and-drop-vanilla-js)
 
 [Make a Sortable List With Draggable Items Using JavaScript - Better Programming](https://betterprogramming.pub/create-a-sortable-list-with-draggable-items-using-javascript-9ef38f96b258)
 
+The Drag And Drop code is in the `dragAndDrop.js`.
+
+```javascript
+const createTodoOnDOM = function (todo) {
+    const newItem = document.createElement('li');
+    ...
+    newItem.setAttribute('draggable', true);
+    newItem.addEventListener('dragstart', onDragStart);
+    newItem.addEventListener('dragend', onDragEnd);
+```
+
+First of all, we have to make each HTML todo item draggable with the HTML attribute `draggable`, then we attach them a event listener for the event `dragstart` (when the user starts dragging the todo item) and `dragend` (when the user release the mouse button).
+
+```javascript
+const dropZone = document.querySelector('.todo-items');
+dropZone.addEventListener('dragover', onDragOver);
+dropZone.addEventListener('drop', onDrop);
+```
+
+Then, we attach the drop zone—the place we drop the todo item. in this case, the HTML list— a event listener for the event `dropover` (when the dragged item is being dragged over the drop zone,) and `drop` (when the element is dropped on the drop zone).
+
+These are functions attached to the event listeners: 
+
+```javascript
+export const onDragStart = function (event) {
+	const currentDragEvent = event;
+
+	// Start by clearing existing data
+	event.dataTransfer.clearData();
+	// Identify the current dragged element by adding a id
+	currentDragEvent.dataTransfer.setData(
+		'text/plain',
+		currentDragEvent.target.getAttribute('data-id')
+	);
+
+	const currentDraggedElement = event.target;
+	currentDraggedElement.classList.add('isDragging');
+};
+```
+
+```javascript
+export const onDragEnd = function (event) {
+	const currentDraggedElement = event.target;
+	currentDraggedElement.classList.remove('isDragging');
+};
+```
+
+```javascript
+export const onDragOver = function (event) {
+	// Make the drop target(i.e div) droppable
+	event.preventDefault();
+
+	// On recupère l'index de l'element sur lequel on est en train de survoler
+	function findIndexOfUnderDragged() {
+		const underDraggedEl = event.target;
+		const underDraggedId = underDraggedEl.dataset.id;
+		if (!underDraggedEl.classList.contains('isDragging')) {
+			const todoItem = findTodoItemInArray(todos, underDraggedId);
+			underDraggedIndex = todos.indexOf(todoItem);
+		}
+	}
+	findIndexOfUnderDragged();
+};
+```
+
+```javascript
+export const onDrop = function (event) {
+	// Avoid the page refresh
+	event.preventDefault();
+
+	function findIndexOfDragged() {
+		const draggedElementId = event.dataTransfer.getData('text');
+		const todoItem = findTodoItemInArray(todos, draggedElementId);
+		// On recupère l'index de l'element isDragging
+		draggedIndex = todos.indexOf(todoItem);
+	}
+	findIndexOfDragged();
+
+	const moveDragged = function () {
+		const draggedTodo = todos[draggedIndex];
+		removeElementAtIndex(draggedIndex, todos);
+		addElementAtIndex(underDraggedIndex, draggedTodo, todos);
+	};
+	moveDragged();
+
+	const render = function () {
+		switch (currentList) {
+			case 'completed': {
+				const completedTodos = generateCompletedTodos();
+				renderTodoList(completedTodos);
+				break;
+			}
+			case 'active': {
+				const activeTodos = generateActiveTodos();
+				renderTodoList(activeTodos);
+				break;
+			}
+			default: {
+				renderTodoList(todos);
+				break;
+			}
+		}
+	};
+	render();
+};
+```
+
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+- GitHub - [xingcdev](https://github.com/xingcdev)
 
 ## Acknowledgments
 
