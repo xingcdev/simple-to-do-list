@@ -21,7 +21,7 @@
 }
 
 .theme-switcher {
-	flex: 0 0 23%;
+	flex: 0 0 100px;
 	position: relative;
 	background: var(--primary-color);
 	border-radius: 30px;
@@ -48,7 +48,7 @@
 	}
 
 	input#dark-mode:checked ~ .indicator {
-		left: 68%;
+		left: 74%;
 	}
 
 	input {
