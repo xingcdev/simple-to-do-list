@@ -60,8 +60,8 @@ The child div's overflow can give the impression that the border-radius isn't wo
 
 ```css
 .todo-body {
-    overflow: hidden;
-    border-radius: 5px;
+	overflow: hidden;
+	border-radius: 5px;
 }
 ```
 
@@ -78,13 +78,13 @@ It's good practice to make 3 modes for the theming.
 The `system` choice let users to say: I prefer my OS to be light but to switch to dark mode at night.
 The users can switch the theme automatically using the OS setting.
 
-I've created the `data-theme` HTML attribute on the root element to store theme value `auto`, `light` or `dark`. 
+I've created the `data-theme` HTML attribute on the root element to store theme value `auto`, `light` or `dark`.
 
 ```html
-<html lang="en" data-theme="auto">
+<html lang="en" data-theme="auto"></html>
 ```
 
-By default, the website is in the light mode. When the theme is `auto`, `prefers-color-scheme` detects if the user has chosen light or dark mode in operating system setting. If  the user has chosen the dark mode, the dark styles inside the `@media (prefers-color-scheme: dark)` will be applied.
+By default, the website is in the light mode. When the theme is `auto`, `prefers-color-scheme` detects if the user has chosen light or dark mode in operating system setting. If the user has chosen the dark mode, the dark styles inside the `@media (prefers-color-scheme: dark)` will be applied.
 
 When the dark theme is turn on, the dark styles inside the `:root[data-theme='dark']` will be applied.
 
@@ -123,9 +123,9 @@ The code below stores the todos in the localStorage:
 
 ```javascript
 const updateLocalStorage = function () {
-    // Only strings may be stored in the localStorage,
-    // so we need to convert our todos array to a JSON string
-    window.localStorage.setItem('todosRef', JSON.stringify(todos));
+	// Only strings may be stored in the localStorage,
+	// so we need to convert our todos array to a JSON string
+	window.localStorage.setItem('todosRef', JSON.stringify(todos));
 };
 ```
 
@@ -133,13 +133,13 @@ When the page is loaded, the function below gets todos from the localStorage and
 
 ```javascript
 const restoreTodos = function () {
-    const todosRef = window.localStorage.getItem('todosRef');
-    if (todosRef) {
-        todos = JSON.parse(todosRef);
-        todos.forEach((todo) => {
-            updateTodoOnDOM(todo);
-        });
-    }
+	const todosRef = window.localStorage.getItem('todosRef');
+	if (todosRef) {
+		todos = JSON.parse(todosRef);
+		todos.forEach((todo) => {
+			updateTodoOnDOM(todo);
+		});
+	}
 };
 ```
 
@@ -174,7 +174,7 @@ dropZone.addEventListener('drop', onDrop);
 
 Then, we attach the drop zone—the place we drop the todo item. in this case, the HTML list— a event listener for the event `dropover` (when the dragged item is being dragged over the drop zone,) and `drop` (when the element is dropped on the drop zone).
 
-These are functions attached to the event listeners: 
+These are functions attached to the event listeners:
 
 ```javascript
 export const onDragStart = function (event) {
@@ -269,3 +269,7 @@ export const onDrop = function (event) {
 [How to build a Todo List App with JavaScript - Freshman](https://freshman.tech/todo-list/) - This blog post helped me to build a to-do list app using JavaScript. I really liked this tutorial because the author explains why he is using that code.
 
 [Pure CSS Custom Checkbox Style - Modern CSS Solutions](https://moderncss.dev/pure-css-custom-checkbox-style/) - This is an amazing article which helped me customizing the HTML checkbox. I like this tutorial because it was build with modern CSS Grid.
+
+## Tasks
+
+- [ ] Fix ¨Items left" doesn´t show the correct number
