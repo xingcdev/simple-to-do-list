@@ -272,4 +272,4 @@ export const onDrop = function (event) {
 
 ## Tasks
 
-- [ ] Fix ¨Items left" doesn´t show the correct number
+- [x] Fix ¨Items left" doesn´t show the correct number

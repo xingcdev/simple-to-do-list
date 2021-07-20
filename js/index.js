@@ -215,27 +215,28 @@ const todoFilters = function () {
 						.forEach((filterButton) => filterButton.classList.add('active'));
 				};
 				MakeFilterButtonsAsActive();
+
+				clearTodoList();
 			}
 
 			if (clickedElement.classList.contains('js-filter-completed')) {
 				currentList = 'completed';
 				const completedTodos = generateCompletedTodos();
-				clearTodoList();
 				renderTodoList(completedTodos);
+				updateCounter();
 			}
 
 			if (clickedElement.classList.contains('js-filter-active')) {
 				currentList = 'active';
 				const activeTodos = generateActiveTodos();
-				clearTodoList();
 				renderTodoList(activeTodos);
+				updateCounter();
 			}
 
 			if (clickedElement.classList.contains('js-filter-all')) {
 				currentList = 'all';
-				// We clear the list because some todos will change the order.
-				clearTodoList();
 				renderTodoList(todos);
+				updateCounter();
 			}
 		})
 	);
