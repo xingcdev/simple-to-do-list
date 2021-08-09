@@ -6,14 +6,11 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshot](#screenshots)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
 ## Overview
@@ -32,13 +29,15 @@ Users should be able to:
 - Toggle light and dark mode
 - **Bonus**: Drag and drop to reorder items on the list
 
-### Screenshot
+### Screenshots
 
-![](./screenshot.jpg)
+![Desktop](./screenshots/desktop.png)
 
-TODO
+![Dark](./screenshots/dark.png)
 
-### Link
+![Mobile](./screenshots/mobile.png)
+
+### Links
 
 - Solution URL: [Simple Todo List](https://xingcdev.github.io/simple-to-do-list/)
 
@@ -47,8 +46,8 @@ TODO
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
+- CSS Preprocessor SCSS
+- CSS Flexbox
 - JavaScript ES6
 - Mobile-first workflow
 
@@ -259,10 +258,6 @@ export const onDrop = function (event) {
 	render();
 };
 ```
-
-## Author
-
-- GitHub - [xingcdev](https://github.com/xingcdev)
 
 ## Acknowledgments
 
